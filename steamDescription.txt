@@ -1,12 +1,13 @@
-[h1][b]Warning:[/b][/h1]
-
-[i]This mod is now much stable but might still cause bugs. It is imperative that you [b]backup your saves[/b] before you start using this mod. If you happen to find a bug, please provide a link to your [b]starbound.log[/b] file. I'll work it out on the weekends since I'm a very busy guy.[/i]
-
 [h1]Overview:[/h1]
 
-When the captain (you) don't like your crew moshing on the teleporter making ya'll look line a canned sardines. When also the captain (you again) want the crews to actually roam around your awesome ship.
+When the captain (you) don't like your crew moshing on the teleporter making ya'll look line a canned sardines. When also the captain (you again) want the crews to actually roam around your awesome ship. [i]This mod is now stable but still, it is imperative that you [b]backup your saves[/b] before you start using this mod. If you happen to find a bug, please provide a link to your [b]starbound.log[/b] file. I'll work it out on the best available weekend I got.[/i]
 
 [h1]Current Features:[/h1]
+
+    [b]1.2[/b]
+    [list][*]Much improved stability.
+    [*] Updated core functions to the latest Starbound Update.
+    [*] Setup a Github repo (still private).
 
     [b]1.1[/b]
     [list][*]Config file for you to place more crew jobs and/or items (anchor.config) OH YURR!.
@@ -27,7 +28,7 @@ If you happen not to have these items on your ship, don't worry! they will find 
 
 [h1]Compatibility:[/h1]
 
-    [b]Test List[/b]
+    [b]Test List as of [22 June, 2019]:[/b]
     [list][*]Vanilla ✓
     [*]Earth's Finest ✓
     [*]FU ✓[/list]

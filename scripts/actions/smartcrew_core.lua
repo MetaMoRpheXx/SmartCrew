@@ -11,8 +11,8 @@ function mmrx_crewCheckShip(args, board)
 
 		for a, b in ipairs(shipMarkerItems) do
 			if objectName == b then
-				sb.logInfo("")
-				sb.logInfo("Ship item (" .. objectName .. ") checked with an entity id of: " .. i .. ". Assuming this crew is on the ship.")
+				-- sb.logInfo("")
+				-- sb.logInfo("Ship item (" .. objectName .. ") checked with an entity id of: " .. i .. ". Assuming this crew is on the ship.")
 
 				return true
 			end
@@ -39,8 +39,8 @@ function mmrx_crewFindRoleAnchor(args, board)
 				if a == args.role and d == objectName then
 					roleAnchor[#roleAnchor+1] = h
 
-					sb.logInfo("Added " .. d .. " on " .. args.role .. " anchorKeysRole table with an entity id of " .. i .. " and key " .. h .. ". Proceeding.")
-					sb.logInfo("")
+					-- sb.logInfo("Added " .. d .. " on " .. args.role .. " anchorKeysRole table with an entity id of " .. i .. " and key " .. h .. ". Proceeding.")
+					-- sb.logInfo("")
 				else
 					anchorKeysRandom[#anchorKeysRandom+1] = h
 				end
@@ -54,8 +54,8 @@ function mmrx_crewFindRoleAnchor(args, board)
 		local anchorItem = crewAnchor[anchorIndex]
 		local anchorName = world.entityName(anchorItem)
 
-		sb.logInfo(crewName .. " (" .. args.role .. ") found an anchor point " .. anchorName .. " with entity id of: " .. anchorItem)
-		sb.logInfo("")
+		-- sb.logInfo(crewName .. " (" .. args.role .. ") found an anchor point " .. anchorName .. " with entity id of: " .. anchorItem)
+		-- sb.logInfo("")
 
 		return true, {entity = anchorItem}
 	else
@@ -64,8 +64,8 @@ function mmrx_crewFindRoleAnchor(args, board)
 		local anchorItem = crewAnchor[anchorIndex]
 		local anchorName = world.entityName(anchorItem)
 
-		sb.logInfo(crewName .. " (" .. args.role .. ") found a random anchor point " .. anchorName .. " with entity id of: " .. anchorItem)
-		sb.logInfo("")
+		-- sb.logInfo(crewName .. " (" .. args.role .. ") found a random anchor point " .. anchorName .. " with entity id of: " .. anchorItem)
+		-- sb.logInfo("")
 
 		return true, {entity = anchorItem}
 	end
