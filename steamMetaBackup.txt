@@ -1,0 +1,11 @@
+{
+  "author" : "MetaMoRpheXx",
+  "description" : "Warning:\n\nThis mod is still in development and might cause bugs. It is imperative that you back up your saves before you start using this mod. If you happen to find a bug, please provide a link to your starbound.log file. I'll work it out on the weekends since I'm a very busy guy.\n\n----------------------------------------------------------\n\nOverview:\n\nWhen the captain (you) don't like your crew moshing on the teleporter making ya'll look line a canned sardines. When also the captain (you again) want the crews to actually roam around your awesome ship.\n\n----------------------------------------------------------\n\nCurrent Features:\n\n    • Chemists will stick around on any Cool Chemical Shelf (apexcoolshelf2)\n    • Mechanics will stick around on any Titanium or Durasteel console\n    • Medics will stick around on Medical Bay Sign (apexmedsign) or Station Medical Scanner (stationmedscanner)\n    • Soldiers will stick around on places in your ship with Gun Chests (gunchest)\n\nIf you happen not to have these items on your ship, don't worry! they will find random objects to hang around instead!\n\n----------------------------------------------------------\n\nCompatibility:\n\nThis mod should be compatible with other mods that doesn't conflict with the crew behavior.\n\n----------------------------------------------------------\n\nFuture Features:\n\n    • Will work on other crew roles\n\n----------------------------------------------------------\n\nOthers and Feedback:\n\n    • I'm open to suggestions as long as modding scope allows it to.\n    • I'll open source the code so you can contribute to this mod once it's stable enough.",
+  "friendlyName" : "Smart Crew",
+  "link" : "steam://url/CommunityFilePage/...",
+  "name" : "SmartCrew",
+  "priority" : 9999,
+  "steamContentId" : "",
+  "tags" : "Miscellaneous|NPCs and Creatures|Ships",
+  "version" : "1.0"
+}

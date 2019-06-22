@@ -1,0 +1,60 @@
+Warning:
+
+This mod is now much stable but might still cause bugs. It is imperative that you back up your saves before you start using this mod. If you happen to find a bug, please provide a link to your starbound.log file. I'll work it out on the weekends since I'm a very busy guy.
+
+----------------------------------------------------------
+
+Overview:
+
+When the captain (you) don't like your crew moshing on the teleporter making ya'll look line a canned sardines. When also the captain (you again) want the crews to actually roam around your awesome ship.
+
+----------------------------------------------------------
+
+Features:
+
+    1.1
+
+        • Config file for you to place more crew jobs and/or items (anchor.config) OH YURR!
+        • Chemists will stick around on any of these new items: Red, Blue and Green Flask (redflask), (greenflask), (blueflask).
+        • Engineers will stick around on any Furnace or Inventor's Table upgraded or not.
+        • Jannies will hang around on any Trash Bag (trashbag), Trash Can (trashcan) (hylotltrashcan) and Poop (poop).
+        • Outlaws will stick around on any Gun Chests (gunchest), Treasure Barrel (barrelgoldfilled), Treasure-Filled Crate (woodencrategoldfilled), Target Dummy (targetdummy), and Medieval Map (medievalmap).
+        • Soldiers will stick around on any of these new items: Target Dummy (targetdummy), and Medieval Map (medievalmap).
+        • Tailor will stick around on any Spinning Wheel upgraded or not.
+
+    1.0
+
+        • Chemists will stick around on any Cool Chemical Shelf (apexcoolshelf2).
+        • Mechanics will stick around on any Titanium or Durasteel console.
+        • Medics will stick around on Medical Bay Sign (apexmedsign) or Station Medical Scanner (stationmedscanner).
+        • Soldiers will stick around on places in your ship with Gun Chests (gunchest).
+
+If you happen not to have these items on your ship, don't worry! they will find random objects to hang around instead!
+
+----------------------------------------------------------
+
+Compatibility:
+
+    Test List:
+ 
+        ✓ Vanilla - Passed
+        ✓ Earth's Finest - Passed
+        ✓ FU - Passed
+
+    Other Compatibility Notes:
+
+        • This mod should be compatible with other mods that doesn't conflict with the crew behavior.
+        • Will expand compatibility list as long as you provide me a mod to test it against.
+
+----------------------------------------------------------
+
+Future Features:
+
+    • As for the long term, I'll create an in-game UI.
+
+----------------------------------------------------------
+
+Others and Feedback:
+
+    • I'm open to suggestions as long as modding scope allows it to.
+    • I'll open source the code so you can contribute to this mod once it's stable enough.
