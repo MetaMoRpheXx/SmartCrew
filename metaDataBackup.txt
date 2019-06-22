@@ -7,9 +7,9 @@ When the captain (you) don't like your crew moshing on the teleporter making ya'
 Features:
 
     1.2
-        • Much improved stability.
         • Updated core functions to the latest Starbound Update.
-        • Setup a Github repo (still private).
+        • Mostly code cleanup (separated and patch files) and some programming stuff. As for the rest of it, I won't go full nerd about the details.
+        • Setup a Github repo (still private at the moment).
 
     1.1
 

@@ -11,6 +11,7 @@ function mmrx_crewCheckShip(args, board)
 
 		for a, b in ipairs(shipMarkerItems) do
 			if objectName == b then
+
 				-- sb.logInfo("")
 				-- sb.logInfo("Ship item (" .. objectName .. ") checked with an entity id of: " .. i .. ". Assuming this crew is on the ship.")
 

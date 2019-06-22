@@ -1,0 +1,17 @@
+[
+    {
+        "op": "add",
+        "path": "/mmrx_getCrewRole",
+        "value": {
+            "type": "action",
+            "name": "mmrx_getCrewRole",
+            "title": "",
+            "properties": {},
+            "category": "crew",
+            "script": "/scripts/actions/smartcrew_utils.lua",
+            "output": {
+                "role": {"type": "string", "key": null}
+            }
+        }
+    }
+]

@@ -5,9 +5,9 @@ When the captain (you) don't like your crew moshing on the teleporter making ya'
 [h1]Current Features:[/h1]
 
     [b]1.2[/b]
-    [list][*]Much improved stability.
-    [*] Updated core functions to the latest Starbound Update.
-    [*] Setup a Github repo (still private).
+    [list][*] Updated core functions to the latest Starbound Update.
+    [*] Mostly code cleanup (separated and patch files) and some programming stuff. As for the rest of it, I won't go full nerd about the details.
+    [*] Setup a Github repo (still private at the moment).
 
     [b]1.1[/b]
     [list][*]Config file for you to place more crew jobs and/or items (anchor.config) OH YURR!.
