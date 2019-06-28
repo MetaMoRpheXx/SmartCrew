@@ -1,35 +1,69 @@
 [
-    {
-        "op": "add",
-        "path": "/mmrx_crewCheckShip",
-        "value": {
-            "type": "action",
-            "name": "mmrx_crewCheckShip",
-            "title": "",
-            "properties": {
-                "position": {"type": "position", "key": "self"}
-            },
-            "category": "world",
-            "script": "/scripts/actions/smartcrew_core.lua",
-            "output": {}
-        }
-    }, {
-        "op": "add",
-        "path": "/mmrx_crewFindRoleAnchor",
-        "value": {
-            "type": "action",
-            "name": "mmrx_crewFindRoleAnchor",
-            "title": "",
-            "properties": {
-                "entity": {"type": "entity", "value": null},
-                "position": {"type": "position", "key": "self"},
-                "role": {"type": "string", "value": null}
-            },
-            "category": "world",
-            "script": "/scripts/actions/smartcrew_core.lua",
-            "output": {
-                "entity": {"type": "entity", "key": null}
-            }
-        }
-    }
+	{
+		"op": "add",
+		"path": "/mmrx_crewCheckShip",
+		"value": {
+			"type": "action",
+			"name": "mmrx_crewCheckShip",
+			"title": "",
+			"properties": {
+				"position": {"type": "position", "key": "self"}
+			},
+			"category": "world",
+			"script": "/scripts/actions/smartcrew_core.lua",
+			"output": {}
+		}
+	}, {
+		"op": "add",
+		"path": "/mmrx_crewFindRoleAnchor",
+		"value": {
+			"type": "action",
+			"name": "mmrx_crewFindRoleAnchor",
+			"title": "",
+			"properties": {
+				"entity": {"type": "entity", "value": null},
+				"position": {"type": "position", "key": "self"},
+				"role": {"type": "string", "value": null}
+			},
+			"category": "world",
+			"script": "/scripts/actions/smartcrew_core.lua",
+			"output": {
+				"entity": {"type": "entity", "key": null}
+			}
+		}
+	}, {
+		"op": "add",
+		"path": "/mmrx_crewPickScheduledTask",
+		"value": {
+			"type": "action",
+			"name": "mmrx_crewPickScheduledTask",
+			"title": "",
+			"properties": {
+				"entity": {"type": "entity", "value": null},
+				"role": {"type": "string", "value": null}
+			},
+			"category": "world",
+			"script": "/scripts/actions/smartcrew_core.lua",
+			"output": {
+				"task": {"type": "string", "key": null}
+			}
+		}
+	}, {
+		"op": "add",
+		"path": "/mmrx_crewDoScheduledTask",
+		"value": {
+			"type": "action",
+			"name": "mmrx_crewDoScheduledTask",
+			"title": "",
+			"properties": {
+				"entity": {"type": "entity", "value": null},
+				"role": {"type": "string", "value": null},
+				"taskpick": {"type": "string", "value": null},
+				"taskqueue": {"type": "string", "value": null}
+			},
+			"category": "world",
+			"script": "/scripts/actions/smartcrew_core.lua",
+			"output": {}
+		}
+	}
 ]

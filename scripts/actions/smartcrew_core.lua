@@ -1,5 +1,9 @@
-local roleAnchorItems = root.assetJson("/anchors.config:roleAnchorItems")
-local shipMarkerItems = root.assetJson("/anchors.config:shipMarkerItems")
+require "/scripts/actions/smartcrew_utils.lua"
+require "/scripts/util.lua"
+
+local roleAnchorItems = root.assetJson("/smartcrew.config:roleAnchorItems")
+local roleScheduleTasks = root.assetJson("/smartcrew.config:roleScheduleTasks")
+local shipMarkerItems = root.assetJson("/smartcrew.config:shipMarkerItems")
 local anchorKeysRole = {}
 
 function mmrx_crewCheckShip(args, board)
@@ -12,8 +16,7 @@ function mmrx_crewCheckShip(args, board)
 		for a, b in ipairs(shipMarkerItems) do
 			if objectName == b then
 
-				-- sb.logInfo("")
-				-- sb.logInfo("Ship item (" .. objectName .. ") checked with an entity id of: " .. i .. ". Assuming this crew is on the ship.")
+				mmrx_testLog("mmrx_crewCheckShip", "Ship item (" .. objectName .. ") checked with an entity id of: " .. i .. ". Assuming this crew is on the ship.")
 
 				return true
 			end
@@ -40,8 +43,7 @@ function mmrx_crewFindRoleAnchor(args, board)
 				if a == args.role and d == objectName then
 					roleAnchor[#roleAnchor+1] = h
 
-					-- sb.logInfo("Added " .. d .. " on " .. args.role .. " anchorKeysRole table with an entity id of " .. i .. " and key " .. h .. ". Proceeding.")
-					-- sb.logInfo("")
+					mmrx_testLog("mmrx_crewFindRoleAnchor", "Added " .. d .. " on " .. args.role .. " anchorKeysRole table with an entity id of " .. i .. " and key " .. h .. ". Proceeding.")
 				else
 					anchorKeysRandom[#anchorKeysRandom+1] = h
 				end
@@ -55,8 +57,7 @@ function mmrx_crewFindRoleAnchor(args, board)
 		local anchorItem = crewAnchor[anchorIndex]
 		local anchorName = world.entityName(anchorItem)
 
-		-- sb.logInfo(crewName .. " (" .. args.role .. ") found an anchor point " .. anchorName .. " with entity id of: " .. anchorItem)
-		-- sb.logInfo("")
+		mmrx_testLog("mmrx_crewFindRoleAnchor", crewName .. " (" .. args.role .. ") found an anchor point " .. anchorName .. " with entity id of: " .. anchorItem)
 
 		return true, {entity = anchorItem}
 	else
@@ -65,10 +66,40 @@ function mmrx_crewFindRoleAnchor(args, board)
 		local anchorItem = crewAnchor[anchorIndex]
 		local anchorName = world.entityName(anchorItem)
 
-		-- sb.logInfo(crewName .. " (" .. args.role .. ") found a random anchor point " .. anchorName .. " with entity id of: " .. anchorItem)
-		-- sb.logInfo("")
+		mmrx_testLog("mmrx_crewFindRoleAnchor", crewName .. " (" .. args.role .. ") found a random anchor point " .. anchorName .. " with entity id of: " .. anchorItem)
 
 		return true, {entity = anchorItem}
 	end
 	
+end
+
+function mmrx_crewPickScheduledTask(args, board)
+	local timeNow = world.timeOfDay()
+	local crewName = world.entityName(args.entity)
+
+	for a, b in pairs(roleScheduleTasks) do
+		if a == args.role then
+			for c, d in pairs(b) do
+				local timeRange = util.isTimeInRange(timeNow, d["time"])
+
+				if timeRange == true then
+					local crewPickTask = d["tasks"][math.random(1, #d["tasks"])]
+
+					mmrx_testLog("mmrx_crewPickScheduledTask", crewName .. " (" .. args.role .. ") has " .. crewPickTask .. " task right now (" .. timeNow .. ")")
+
+					return true, {task = crewPickTask}
+				end
+			end
+		end
+	end
+end
+
+function mmrx_crewDoScheduledTask(args, board)
+	local timeOfDay = world.timeOfDay()
+
+	if args.taskpick == args.taskqueue then
+		return true
+	else
+		return false
+	end
 end

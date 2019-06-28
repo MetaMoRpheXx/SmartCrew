@@ -7,5 +7,5 @@
   "priority" : 9999,
   "steamContentId" : "",
   "tags" : "Miscellaneous|NPCs and Creatures|Ships",
-  "version" : "1.0"
+  "version" : "1.2"
 }

@@ -1,17 +1,32 @@
 [
-    {
-        "op": "add",
-        "path": "/mmrx_getCrewRole",
-        "value": {
-            "type": "action",
-            "name": "mmrx_getCrewRole",
-            "title": "",
-            "properties": {},
-            "category": "crew",
-            "script": "/scripts/actions/smartcrew_utils.lua",
-            "output": {
-                "role": {"type": "string", "key": null}
-            }
-        }
-    }
+	{
+		"op": "add",
+		"path": "/mmrx_getCrewRole",
+		"value": {
+			"type": "action",
+			"name": "mmrx_getCrewRole",
+			"title": "",
+			"properties": {},
+			"category": "crew",
+			"script": "/scripts/actions/smartcrew_utils.lua",
+			"output": {
+				"role": {"type": "string", "key": null}
+			}
+		}
+	}, {
+		"op": "add",
+		"path": "/mmrx_getTime",
+		"value": {
+			"type": "action",
+			"name": "mmrx_getTime",
+			"title": "",
+			"properties": {},
+			"category": "crew",
+			"script": "/scripts/actions/smartcrew_utils.lua",
+			"output": {
+				"timeworld": {"type": "number", "key": null},
+				"timenow": {"type": "number", "key": null}
+			}
+		}
+	}
 ]

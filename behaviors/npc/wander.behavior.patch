@@ -8,100 +8,17 @@
 		"path": "/scripts/-",
 		"value": "/scripts/actions/smartcrew_utils.lua"
 	}, {
-        "op": "add",
-        "path": "/parameters/shipRange",
-        "value": 700
-    }, {
-        "op": "add",
-        "path": "/parameters/crewStationRange",
-        "value": 2
-    }, {
-        "op": "add",
-        "path": "/root/children/0/children/0/children/0/children/1",
-        "value": {
-			"title": null,
-			"type": "composite",
-			"name": "sequence",
-			"parameters": {},
-			"children": [
-				{
-					"title": "hasRecruiter",
-					"type": "action",
-					"name": "hasRecruiter",
-					"parameters": {}
-				},
-				{
-					"title": "inverter",
-					"type": "decorator",
-					"name": "inverter",
-					"parameters": {},
-					"child": {
-						"title": "isFollowingRecruiter",
-						"type": "action",
-						"name": "isFollowingRecruiter",
-						"parameters": {}
-					}
-				},
-				{
-					"title": "mmrx_crewCheckShip",
-					"type": "action",
-					"name": "mmrx_crewCheckShip",
-					"parameters": {
-						"position": {
-							"key": "self"
-						}
-					}
-				},
-				{
-					"title": "mmrx_getCrewRole",
-					"type": "action",
-					"name": "mmrx_getCrewRole",
-					"parameters": {},
-					"output": {
-						"role": "crewrole"
-					}
-				},
-				{
-					"title": "mmrx_crewFindRoleAnchor",
-					"type": "action",
-					"name": "mmrx_crewFindRoleAnchor",
-					"parameters": {
-						"entity": {
-							"key": "self"
-						},
-						"position": {
-							"key": "self"
-						},
-						"role": {
-							"key": "crewrole"
-						}
-					},
-					"output": {
-						"entity": "marker"
-					}
-				},
-				{
-					"title": "entityPosition",
-					"type": "action",
-					"name": "entityPosition",
-					"parameters": {
-						"name": {
-							"value": "initMarker"
-						},
-						"entity": {
-							"key": "marker"
-						}
-					},
-					"output": {
-						"position": "home"
-					}
-				}
-			]
-		}
-    }, {
-        "op": "replace",
-        "path": "/root/children/0/children/0/children/1",
-        "value": {
+		"op": "add",
+		"path": "/parameters/shipRange",
+		"value": 700
+	}, {
+		"op": "add",
+		"path": "/parameters/crewStationRange",
+		"value": 2
+	}, {
+		"op": "replace",
+		"path": "/root/children/0/children/0/children/1",
+		"value": {
 			"title": "selector",
 			"type": "composite",
 			"name": "selector",
@@ -251,9 +168,9 @@
 			]
 		}
 	}, {
-        "op": "replace",
-        "path": "/root/children/0/children/0/children/2",
-        "value": {
+		"op": "replace",
+		"path": "/root/children/0/children/0/children/2",
+		"value": {
 			"title": "parallel",
 			"type": "composite",
 			"name": "parallel",
@@ -377,9 +294,9 @@
 			]
 		}
 	}, {
-        "op": "add",
-        "path": "/root/children/0/children/1/children/0",
-        "value": {
+		"op": "add",
+		"path": "/root/children/0/children/1/children/0",
+		"value": {
 			"title": null,
 			"type": "decorator",
 			"name": "inverter",
@@ -392,9 +309,9 @@
 			}
 		}
 	}, {
-        "op": "add",
-        "path": "/root/children/0/children/2/children/0",
-        "value": {
+		"op": "add",
+		"path": "/root/children/0/children/2/children/0",
+		"value": {
 			"title": null,
 			"type": "decorator",
 			"name": "inverter",
@@ -407,9 +324,9 @@
 			}
 		}
 	}, {
-        "op": "add",
-        "path": "/root/children/0/children/3/children/0",
-        "value": {
+		"op": "add",
+		"path": "/root/children/0/children/3/children/0",
+		"value": {
 			"title": null,
 			"type": "decorator",
 			"name": "inverter",
@@ -422,10 +339,10 @@
 			}
 		}
 	}, {
-        "op": "add",
-        "path": "/root/children/0/children/-",
-        "value": {
-			"title": "Smart Crew Roam",
+		"op": "add",
+		"path": "/root/children/0/children/-",
+		"value": {
+			"title": "Smart Crew Behavior",
 			"type": "composite",
 			"name": "sequence",
 			"parameters": {},
@@ -446,14 +363,11 @@
 					}
 				},
 				{
-					"title": "mmrx_crewFindRoleAnchor",
+					"title": "",
 					"type": "action",
-					"name": "mmrx_crewFindRoleAnchor",
+					"name": "mmrx_crewPickScheduledTask",
 					"parameters": {
 						"entity": {
-							"key": "self"
-						},
-						"position": {
 							"key": "self"
 						},
 						"role": {
@@ -461,69 +375,123 @@
 						}
 					},
 					"output": {
-						"entity": "marker"
+						"task": "crewpickedtask"
 					}
 				},
 				{
-					"title": "entityPosition",
-					"type": "action",
-					"name": "entityPosition",
-					"parameters": {
-						"name": {
-							"value": "gtpaMarker"
-						},
-						"entity": {
-							"key": "marker"
-						}
-					},
-					"output": {
-						"position": "station"
-					}
-				},
-				{
-					"title": "",
+					"title": "selector",
 					"type": "composite",
-					"name": "parallel",
-					"parameters": {
-						"fail": {
-							"value": -1
-						},
-						"success": {
-							"value": 1
-						}
-					},
+					"name": "selector",
+					"parameters": {},
 					"children": [
 						{
-							"title": "",
-							"type": "action",
-							"name": "moveToPosition",
-							"parameters": {
-								"position": {
-									"key": "station"
+							"title": "work",
+							"type": "composite",
+							"name": "sequence",
+							"parameters": {},
+							"children": [
+								{
+									"title": "",
+									"type": "action",
+									"name": "mmrx_crewDoScheduledTask",
+									"parameters": {
+										"entity": {
+											"key": "self"
+										},
+										"role": {
+											"key": "crewrole"
+										},
+										"taskpick": {
+											"key": "crewpickedtask"
+										},
+										"taskqueue": {
+											"value": "work"
+										}
+									}
 								},
-								"run": {
-									"key": "<alwaysRun>"
+								{
+									"title": "mmrx_crewFindRoleAnchor",
+									"type": "action",
+									"name": "mmrx_crewFindRoleAnchor",
+									"parameters": {
+										"entity": {
+											"key": "self"
+										},
+										"position": {
+											"key": "self"
+										},
+										"role": {
+											"key": "crewrole"
+										}
+									},
+									"output": {
+										"entity": "marker"
+									}
+								},
+								{
+									"title": "entityPosition",
+									"type": "action",
+									"name": "entityPosition",
+									"parameters": {
+										"name": {
+											"value": "gtpaMarker"
+										},
+										"entity": {
+											"key": "marker"
+										}
+									},
+									"output": {
+										"position": "station"
+									}
+								},
+								{
+									"title": "",
+									"type": "composite",
+									"name": "parallel",
+									"parameters": {
+										"fail": {
+											"value": -1
+										},
+										"success": {
+											"value": 1
+										}
+									},
+									"children": [
+										{
+											"title": "",
+											"type": "action",
+											"name": "moveToPosition",
+											"parameters": {
+												"position": {
+													"key": "station"
+												},
+												"run": {
+													"key": "<alwaysRun>"
+												}
+											}
+										},
+										{
+											"title": "inRange",
+											"type": "action",
+											"name": "inRange",
+											"parameters": {
+												"name": {
+													"value": "station"
+												},
+												"position": {
+													"key": "self"
+												},
+												"range": {
+													"value": 1
+												},
+												"target": {
+													"key": "station"
+												}
+											}
+										}
+									]
 								}
-							}
-						},
-						{
-							"title": "inRange",
-							"type": "action",
-							"name": "inRange",
-							"parameters": {
-								"name": {
-									"value": "station"
-								},
-								"position": {
-									"key": "self"
-								},
-								"range": {
-									"value": 1
-								},
-								"target": {
-									"key": "station"
-								}
-							}
+							]
 						}
 					]
 				}

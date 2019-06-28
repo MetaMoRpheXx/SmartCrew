@@ -8,7 +8,7 @@ Features:
 
     1.2
         • Updated core functions to the latest Starbound Update.
-        • Mostly code cleanup (separated and patch files) and some programming stuff. As for the rest of it, I won't go full nerd about the details.
+        • Mostly code cleanup (independent files and patches) and some programming stuff. As for the rest of it, I won't go full nerd about the details.
         • Setup a Github repo (still private at the moment).
 
     1.1
