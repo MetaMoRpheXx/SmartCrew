@@ -2,6 +2,11 @@
 	{
 		"op": "add",
 		"path": "/scripts/-",
+		"value": "/scripts/actions/npc.lua"
+	},
+	{
+		"op": "add",
+		"path": "/scripts/-",
 		"value": "/scripts/actions/smartcrew_core.lua"
 	}, {
 		"op": "add",
@@ -10,7 +15,7 @@
 	}, {
 		"op": "add",
 		"path": "/parameters/shipRange",
-		"value": 700
+		"value": 450
 	}, {
 		"op": "add",
 		"path": "/parameters/crewStationRange",
@@ -19,13 +24,13 @@
 		"op": "replace",
 		"path": "/root/children/0/children/0/children/1",
 		"value": {
-			"title": "selector",
+			"title": "followRangeSelector",
 			"type": "composite",
 			"name": "selector",
 			"parameters": {},
 			"children": [
 				{
-					"title": null,
+					"title": "rangeRecruiterNotFollow",
 					"type": "composite",
 					"name": "sequence",
 					"parameters": {},
@@ -58,25 +63,17 @@
 								"type": "action",
 								"name": "inRange",
 								"parameters": {
-									"name": {
-										"value": "defaultShipRange"
-									},
-									"position": {
-										"key": "self"
-									},
-									"range": {
-										"key": "<shipRange>"
-									},
-									"target": {
-										"key": "home"
-									}
+									"name": {"value": "defaultShipRange"},
+									"position": {"key": "self"},
+									"range": {"key": "<shipRange>"},
+									"target": {"key": "home"}
 								}
 							}
 						}
 					]	
 				},
 				{
-					"title": null,
+					"title": "rangeRecruiterFollow",
 					"type": "composite",
 					"name": "sequence",
 					"parameters": {},
@@ -103,31 +100,23 @@
 								"type": "action",
 								"name": "inRange",
 								"parameters": {
-									"name": {
-										"value": "defaultFollowingRange"
-									},
-									"position": {
-										"key": "self"
-									},
-									"range": {
-										"key": "<innerHomeRange>"
-									},
-									"target": {
-										"key": "home"
-									}
+									"name": {"value": "defaultFollowingRange"},
+									"position": {"key": "self"},
+									"range": {"key": "<innerHomeRange>"},
+									"target": {"key": "home"}
 								}
 							}
 						}
 					]	
 				},
 				{
-					"title": null,
+					"title": "rangeDefault",
 					"type": "composite",
 					"name": "sequence",
 					"parameters": {},
 					"children": [
 						{
-							"title": null,
+							"title": "inverter",
 							"type": "decorator",
 							"name": "inverter",
 							"parameters": {},
@@ -148,148 +137,14 @@
 								"type": "action",
 								"name": "inRange",
 								"parameters": {
-									"name": {
-										"value": "defaultNPCRange"
-									},
-									"position": {
-										"key": "self"
-									},
-									"range": {
-										"key": "<outerHomeRange>"
-									},
-									"target": {
-										"key": "home"
-									}
+									"name": {"value": "defaultNPCRange"},
+									"position": {"key": "self"},
+									"range": {"key": "<outerHomeRange>"},
+									"target": {"key": "home"}
 								}
 							}
 						}
 					]	
-				}
-			]
-		}
-	}, {
-		"op": "replace",
-		"path": "/root/children/0/children/0/children/2",
-		"value": {
-			"title": "parallel",
-			"type": "composite",
-			"name": "parallel",
-			"parameters": {
-				"fail": {
-					"value": -1
-				},
-				"success": {
-					"value": 1
-				}
-			},
-			"children": [
-				{
-					"title": "selector",
-					"type": "composite",
-					"name": "selector",
-					"parameters": {},
-					"children": [
-						{
-							"title": "",
-							"type": "action",
-							"name": "moveToPosition",
-							"parameters": {
-								"pathOptions": {
-									"value": {
-										"returnBest": true
-									}
-								},
-								"position": {
-									"key": "home"
-								},
-								"run": {
-									"key": "<alwaysRun>"
-								}
-							}
-						},
-						{
-							"title": "parallel",
-							"type": "composite",
-							"name": "parallel",
-							"parameters": {
-								"fail": {
-									"value": 2
-								},
-								"success": {
-									"value": 2
-								}
-							},
-							"children": [
-								{
-									"title": "distance",
-									"type": "action",
-									"name": "distance",
-									"parameters": {
-										"from": {
-											"key": "self"
-										},
-										"to": {
-											"key": "home"
-										}
-									},
-									"output": {
-										"x": "homeX"
-									}
-								},
-								{
-									"title": "inRange",
-									"type": "action",
-									"name": "inRange",
-									"parameters": {
-										"name": {
-											"value": "defaultInnerHomeRange"
-										},
-										"position": {
-											"key": "self"
-										},
-										"range": {
-											"key": "<innerHomeRange>"
-										},
-										"target": {
-											"key": "home"
-										}
-									}
-								},
-								{
-									"title": "move",
-									"type": "action",
-									"name": "move",
-									"parameters": {
-										"direction": {
-											"key": "homeX"
-										},
-										"run": {
-											"value": false
-										}
-									}
-								}
-							]
-						}
-					]
-				},
-				{
-					"title": "inRange",
-					"type": "action",
-					"name": "inRange",
-					"parameters": {
-						"name": {
-							"value": "defaultHomeDistanceToNPC"
-						},
-						"position": {
-							"key": "self"
-						},
-						"range": {
-							"value": 5
-						},
-						"target": {
-							"key": "home"
-						}
-					}
 				}
 			]
 		}
@@ -342,7 +197,7 @@
 		"op": "add",
 		"path": "/root/children/0/children/-",
 		"value": {
-			"title": "Smart Crew Behavior",
+			"title": "smartCrewBehavior",
 			"type": "composite",
 			"name": "sequence",
 			"parameters": {},
@@ -363,29 +218,138 @@
 					}
 				},
 				{
-					"title": "",
+					"title": "mmrx_crewPickScheduledTask",
 					"type": "action",
 					"name": "mmrx_crewPickScheduledTask",
 					"parameters": {
-						"entity": {
-							"key": "self"
-						},
-						"role": {
-							"key": "crewrole"
-						}
+						"entity": {"key": "self"},
+						"role": {"key": "crewrole"}
 					},
 					"output": {
 						"task": "crewpickedtask"
 					}
 				},
 				{
-					"title": "selector",
+					"title": "taskSelection",
 					"type": "composite",
 					"name": "selector",
 					"parameters": {},
 					"children": [
 						{
-							"title": "work",
+							"title": "loungeTask",
+							"type": "composite",
+							"name": "sequence",
+							"parameters": {},
+							"children": [
+								{
+									"title": "",
+									"type": "action",
+									"name": "mmrx_crewDoScheduledTask",
+									"parameters": {
+										"entity": {"key": "self"},
+										"role": {"key": "crewrole"},
+										"taskpick": {"key": "crewpickedtask"},
+										"taskqueue": {"value": "lounge"}
+									},
+									"output": {
+										"duration": "loungeDuration"
+									}
+								},
+								{
+									"title": "sit",
+									"type": "module",
+									"name": "sit",
+									"parameters": {}
+								},
+								{
+									"title": "mmrx_crewWorkRoleAction",
+									"type": "action",
+									"name": "mmrx_crewWorkRoleAction",
+									"parameters": {
+										"entity": {"key": "self"},
+										"role": {"key": "crewrole"},
+										"task": {"key": "crewpickedtask"}
+									},
+									"output": {
+										"action": "moodAction",
+										"duration": "moodDuration",
+										"emote": "moodEmote",
+										"speech": "moodSpeech"
+									}
+								},
+								{
+									"title": "mmrx_setCrewMood",
+									"type": "action",
+									"name": "mmrx_setCrewMood",
+									"parameters": {
+										"action": {"key": "moodAction"},
+										"duration": {"key": "moodDuration"},
+										"emote": {"key": "moodEmote"},
+										"speech": {"key": "moodSpeech"}
+									}
+								}
+							]
+						}, {
+							"title": "roamTask",
+							"type": "composite",
+							"name": "sequence",
+							"parameters": {},
+							"children": [
+								{
+									"title": "",
+									"type": "action",
+									"name": "mmrx_crewDoScheduledTask",
+									"parameters": {
+										"entity": {"key": "self"},
+										"role": {"key": "crewrole"},
+										"taskpick": {"key": "crewpickedtask"},
+										"taskqueue": {"value": "roam"}
+									},
+									"output": {
+										"duration": "roamDuration"
+									}
+								},
+								{
+									"title": "roam",
+									"type": "module",
+									"name": "patrol",
+									"parameters": {
+										"patrolTime": {"value": 2.0}
+									}
+								}
+							]
+						}, {
+							"title": "sleepTask",
+							"type": "composite",
+							"name": "sequence",
+							"parameters": {},
+							"children": [
+								{
+									"title": "",
+									"type": "action",
+									"name": "mmrx_crewDoScheduledTask",
+									"parameters": {
+										"entity": {"key": "self"},
+										"role": {"key": "crewrole"},
+										"taskpick": {"key": "crewpickedtask"},
+										"taskqueue": {"value": "sleep"}
+									},
+									"output": {
+										"duration": "sleepDuration"
+									}
+								},
+								{
+									"title": "sleep",
+									"type": "module",
+									"name": "sleep",
+									"parameters": {
+										"sleepUntil": {"key": "sleepDuration"}
+									}
+								}
+							]
+						},
+						{
+							"title": "workTask",
 							"type": "composite",
 							"name": "sequence",
 							"parameters": {},
@@ -407,6 +371,9 @@
 										"taskqueue": {
 											"value": "work"
 										}
+									},
+									"output": {
+										"duration": "workDuration"
 									}
 								},
 								{
@@ -434,7 +401,7 @@
 									"name": "entityPosition",
 									"parameters": {
 										"name": {
-											"value": "gtpaMarker"
+											"value": "workMarker"
 										},
 										"entity": {
 											"key": "marker"
@@ -490,6 +457,33 @@
 											}
 										}
 									]
+								},
+								{
+									"title": "mmrx_crewWorkRoleAction",
+									"type": "action",
+									"name": "mmrx_crewWorkRoleAction",
+									"parameters": {
+										"entity": {"key": "self"},
+										"role": {"key": "crewrole"},
+										"task": {"key": "crewpickedtask"}
+									},
+									"output": {
+										"action": "moodAction",
+										"duration": "moodDuration",
+										"emote": "moodEmote",
+										"speech": "moodSpeech"
+									}
+								},
+								{
+									"title": "mmrx_setCrewMood",
+									"type": "action",
+									"name": "mmrx_setCrewMood",
+									"parameters": {
+										"action": {"key": "moodAction"},
+										"duration": {"key": "moodDuration"},
+										"emote": {"key": "moodEmote"},
+										"speech": {"key": "moodSpeech"}
+									}
 								}
 							]
 						}

@@ -1,0 +1,86 @@
+[
+	{
+		"op": "add",
+		"path": "/scripts/-",
+		"value": "/scripts/actions/crew.lua"
+	}, {
+		"op": "add",
+		"path": "/scripts/-",
+		"value": "/scripts/actions/smartcrew_core.lua"
+	}, {
+		"op": "add",
+		"path": "/scripts/-",
+		"value": "/scripts/actions/smartcrew_utils.lua"
+	}, {
+		"op": "replace",
+		"path": "/root/children/0",
+		"value": {
+			"title": "bedSelector",
+			"type": "composite",
+			"name": "selector",
+			"parameters": {},
+			"children": [
+				{
+					"title": "bedFindMod",
+					"type": "composite",
+					"name": "sequence",
+					"parameters": {},
+					"children": [
+						{
+							"title": "hasRecruiter",
+							"type": "action",
+							"name": "hasRecruiter",
+							"parameters": {}
+						},
+						{
+							"title": null,
+							"type": "action",
+							"name": "findLoungable",
+							"parameters": {
+								"orientation": {"value": "lay"},
+								"position": {"key": "spawn"},
+								"range": {"value": 450}
+							},
+							"output": {
+								"entity": "bed"
+							}
+						}
+					]
+				},
+				{
+					"title": "bedFindDefault",
+					"type": "composite",
+					"name": "sequence",
+					"parameters": {},
+					"children": [
+						{
+							"title": "inverter",
+							"type": "decorator",
+							"name": "inverter",
+							"parameters": {},
+							"child": {
+								"title": "hasRecruiter",
+								"type": "action",
+								"name": "hasRecruiter",
+								"parameters": {}
+							}
+						},
+						{
+							"title": null,
+							"type": "action",
+							"name": "findLoungable",
+							"parameters": {
+								"orientation": {"value": "lay"},
+								"position": {"key": "spawn"},
+								"range": {"value": 50}
+							},
+							"output": {
+								"entity": "bed"
+							}
+						}
+					]
+				}
+			]
+		}
+	}
+]

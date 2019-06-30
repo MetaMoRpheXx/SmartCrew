@@ -33,6 +33,27 @@
 		}
 	}, {
 		"op": "add",
+		"path": "/mmrx_crewWorkRoleAction",
+		"value": {
+			"type": "action",
+			"name": "mmrx_crewWorkRoleAction",
+			"title": "",
+			"properties": {
+				"entity": {"type": "entity", "value": null},
+				"role": {"type": "string", "value": null},
+				"task": {"type": "string", "value": null}
+			},
+			"category": "world",
+			"script": "/scripts/actions/smartcrew_core.lua",
+			"output": {
+				"action": {"type": "string", "key": null},
+				"duration": {"type": "number", "key": null},
+				"emote": {"type": "string", "key": null},
+				"speech": {"type": "string", "key": null}
+			}
+		}
+	}, {
+		"op": "add",
 		"path": "/mmrx_crewPickScheduledTask",
 		"value": {
 			"type": "action",
@@ -63,7 +84,9 @@
 			},
 			"category": "world",
 			"script": "/scripts/actions/smartcrew_core.lua",
-			"output": {}
+			"output": {
+				"duration": {"type": "vec2", "key": null}
+			}
 		}
 	}
 ]
