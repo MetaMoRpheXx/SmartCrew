@@ -1,8 +1,18 @@
 [h1]Overview:[/h1]
 
-When the captain (you) don't like your crew moshing on the teleporter making ya'll look line a canned sardines. When also the captain (you again) want the crews to actually roam around your awesome ship. [i]This mod is now stable but still, it is imperative that you [b]backup your saves[/b] before you start using this mod. If you happen to find a bug, please provide a link to your [b]starbound.log[/b] file. I'll work it out on the best available weekend I got.[/i]
+One of the things that irritates me is that my crews keeps sticking themselves on the teleporter all the time, which inspired me to create this mod despite of my really tight schedule. Now your crews are much more active than fiddling with your teleporter! (probably because your crew and the other bois at 2am are looking for [b]BEANS[/b]). This mod is for you if you don't like your crews looking like canned sausages. [i]The current state is stable but still, it is imperative that you [b]backup your saves[/b] before you start using this mod. If you happen to find a bug, please provide a link to your [b]starbound.log[/b] file, trust me, it'll benefit the both of us. I'll work it out on the best available weekend I got.[/i]
 
 [h1]Current Features:[/h1]
+
+    [b]1.3[/b]
+    [list][*] Crew members now have an internal daily schedule which means that they won't stick on the anchors permanently.
+    [*]Individual crew's schedule have activities/tasks which is set every "ship day". This means that they have several activities/tasks everyday!
+    [*]Current activities/tasks include "lounge", "roam", "sleep" and "work".
+    [*]Lounging crews will make them sit around on chairs nearby.
+    [*]Roaming crews will patrol your ship at random places.
+    [*]Sleeping will vary from the crew's schedule defined at the config file (you may fiddle around the config if you know what you're doing and you're using the DRM Free version).
+    [*]Working crews will go to their respective "anchors" doing their jobs that relates to their role.
+    [*]You may see them reacting doing stuffs with a small chance of them doing monolouge along with it.[/list]
 
     [b]1.2[/b]
     [list][*] Updated core functions to the latest Starbound Update.
@@ -28,7 +38,7 @@ If you happen not to have these items on your ship, don't worry! they will find 
 
 [h1]Compatibility:[/h1]
 
-    [b]Test List as of [22 June, 2019]:[/b]
+    [b]Test List as of [30 June, 2019]:[/b]
     [list][*]Vanilla ✓
     [*]Earth's Finest ✓
     [*]FU ✓[/list]
@@ -38,11 +48,11 @@ If you happen not to have these items on your ship, don't worry! they will find 
     [*]Will expand compatibility list as long as you provide me a mod to test it against.[/list]
 
 [h1]Future Features:[/h1]
-[list][*]As for the long term, I'll create an in-game UI.[/list]
+[list][*]More behaviors and refined reactions. (Currently working on)
+[*]As for the long term, I'll create an in-game UI. (On lowest priority right now)[/list]
 
 [h1]Others and Feedback:[/h1]
-[list][*]I'm open to suggestions as long as modding scope allows it to.
-[*]I'll open source the code so you can contribute to this mod once it's stable enough.[/list]
+[list][*]I'm open to suggestions as long as modding scope allows it to.[/list]
 
 [h1]Links:[/h1]
 [list][*][url=https://community.playstarbound.com/resources/smart-crew.5746/] Chucklefish Forums (DRM Free)[/url].[/list]
