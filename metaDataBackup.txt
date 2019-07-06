@@ -14,15 +14,15 @@ Features:
 
 Anchor Items:
 
-    • Chef: "apexoven", "campfire", "floranstove", "kitchenstovetop", "medievallargecookingpot", "microwave", "nanostove", "outpostcookingtable", "outpostmicrowave", "rusticoven", "woodencookingtable"
-    • Chemist: "apexcoolshelf2", "blueflask", "greenflask", "redflask"
-    • Engineer: "craftingfurnace", "inventorstable"
-    • Janitor: "hylotltrashcan", "poop", "trashbag", "trashcan"
-    • Mechanic: "apexfuelhatch", "tier3switch", "tier4switch"
-    • Medic: "apexmedsign", "stationmedscanner"
-    • Outlaw: "gunchest", "barrelgoldfilled","medievalmap","targetdummy", "woodencrategoldfilled"
-    • Soldier: "gunchest", "medievalmap", "targetdummy"
-    • Tailor: "apexcoolchair", "craftingwheel"
+    • Chef: apexoven, campfire, floranstove, kitchenstovetop, medievallargecookingpot, microwave, nanostove, outpostcookingtable, outpostmicrowave, rusticoven, woodencookingtable
+    • Chemist: apexcoolshelf2, blueflask, greenflask, redflask
+    • Engineer: craftingfurnace, inventorstable
+    • Janitor: hylotltrashcan, poop, trashbag, trashcan
+    • Mechanic: apexfuelhatch, tier3switch, tier4switch
+    • Medic: apexmedsign, stationmedscanner
+    • Outlaw: gunchest, barrelgoldfilled,medievalmap,targetdummy, woodencrategoldfilled
+    • Soldier: gunchest, medievalmap, targetdummy
+    • Tailor: apexcoolchair, craftingwheel
 
     If you happen not to have these items on your ship, don't worry! they will find random objects to hang around instead!
 

@@ -10,15 +10,15 @@ One of the things that irritates me is that my crews keeps sticking themselves o
 
 [h1]Anchor Items:[/h1]
 
-    [list][*][b]Chef[/b]: "apexoven", "campfire", "floranstove", "kitchenstovetop", "medievallargecookingpot", "microwave", "nanostove", "outpostcookingtable", "outpostmicrowave", "rusticoven", "woodencookingtable"
-    [*][b]Chemist[/b]: "apexcoolshelf2", "blueflask", "greenflask", "redflask"
-    [*][b]Engineer[/b]: "craftingfurnace", "inventorstable"
-    [*][b]Janitor[/b]: "hylotltrashcan", "poop", "trashbag", "trashcan"
-    [*][b]Mechanic[/b]: "apexfuelhatch", "tier3switch", "tier4switch"
-    [*][b]Medic[/b]: "apexmedsign", "stationmedscanner"
-    [*][b]Outlaw[/b]: "gunchest", "barrelgoldfilled","medievalmap","targetdummy", "woodencrategoldfilled"
-    [*][b]Soldier[/b]: "gunchest", "medievalmap", "targetdummy"
-    [*][b]Tailor[/b]: "apexcoolchair", "craftingwheel"[/list]
+    [list][*][b]Chef[/b]: apexoven, campfire, floranstove, kitchenstovetop, medievallargecookingpot, microwave, nanostove, outpostcookingtable, outpostmicrowave, rusticoven, woodencookingtable
+    [*][b]Chemist[/b]: apexcoolshelf2, blueflask, greenflask, redflask
+    [*][b]Engineer[/b]: craftingfurnace, inventorstable
+    [*][b]Janitor[/b]: hylotltrashcan, poop, trashbag, trashcan
+    [*][b]Mechanic[/b]: apexfuelhatch, tier3switch, tier4switch
+    [*][b]Medic[/b]: apexmedsign, stationmedscanner
+    [*][b]Outlaw[/b]: gunchest, barrelgoldfilled,medievalmap,targetdummy, woodencrategoldfilled
+    [*][b]Soldier[/b]: gunchest, medievalmap, targetdummy
+    [*][b]Tailor[/b]: apexcoolchair, craftingwheel[/list]
 
 If you happen not to have these items on your ship, don't worry! they will find random objects to hang around instead!
 

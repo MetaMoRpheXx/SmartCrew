@@ -130,17 +130,17 @@ function mmrx_crewPickScheduledTask(args, board)
 		}
 	end
 
-	if taskCrewStatus[crewRole .. "_" .. crewName][dayNow - 1] ~= nil then
+	if taskCrewStatus[crewRole .. "_" .. crewName][dayNow] == nil then
 		taskCrewStatus[crewRole .. "_" .. crewName] = {}
 		taskCrewStatus[crewRole .. "_" .. crewName][dayNow] = {
 			current = 1,
 			activities = {}
 		}
 
-		-- mmrx_testLog("mmrx_crewPickScheduledTask", crewName .. " (" .. crewRole .. ") has done his yesterday's entry (Day " .. dayNow - 1 .. ") and is now erased from his schedule pool. " .. crewName .. " will now be picking schedule for today (Day " .. dayNow .. ").")
+		-- mmrx_testLog("mmrx_crewPickScheduledTask", crewName .. " (" .. crewRole .. ") has done his yesterday's entry and is now erased from his schedule pool. " .. crewName .. " will now be picking schedule for today (Day " .. dayNow .. ").")
 	end
 
-	if next(taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]) == nil then
+	if taskCrewStatus[crewRole .. "_" .. crewName][dayNow] ~= nil and next(taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]) == nil then
 		local activityMerge = ""
 
 		if roleScheduleTasks[crewRole] ~= nil and next(roleScheduleTasks[crewRole]) ~= nil then
@@ -164,6 +164,7 @@ function mmrx_crewPickScheduledTask(args, board)
 			end
 		else
 			-- mmrx_testLog("mmrx_crewPickScheduledTask", crewName .. " (" .. crewRole .. ") has no default role task. Prewriting based on a random.")
+
 			local tempCounter = 0
 
 			while tempCounter <= 10 do
@@ -192,27 +193,13 @@ function mmrx_crewPickScheduledTask(args, board)
 		end
 	end
 
-	if next(taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]) == nil then
-		local crewPickedDefaultTask = taskDefaults[math.random(1, #taskDefaults)]
+	for a, b in pairs(taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]) do
+		if util.isTimeInRange(timeNow, b["schedule"]) == true then
+			taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["current"] = a
 
-		table.insert(taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"], {
-			task = crewPickedDefaultTask,
-			schedule = crewSchedule
-		})
+			-- mmrx_testLog("mmrx_crewPickScheduledTask", crewName .. " (" .. crewRole .. ") is now doing " .. b["task"] .. " with a schedule of " .. b["schedule"][1] .. " to " .. b["schedule"][2])
 
-		-- mmrx_testLog("mmrx_crewPickScheduledTask", crewName .. " (" .. crewRole .. ") has no picked task and was assigned to " .. crewPickedDefaultTask .. " by default for the current schedule (" .. timeNow .. ")")
-
-		return true, {task = crewPickedDefaultTask}
-	else
-		for a, b in pairs(taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]) do
-
-			if util.isTimeInRange(timeNow, b["schedule"]) == true then
-				taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["current"] = a
-
-				-- mmrx_testLog("mmrx_crewPickScheduledTask", crewName .. " (" .. crewRole .. ") is now doing " .. b["task"] .. " with a schedule of " .. b["schedule"][1] .. " to " .. b["schedule"][2])
-
-				return true, {task = b["task"]}
-			end
+			return true, {task = b["task"]}
 		end
 	end
 end
