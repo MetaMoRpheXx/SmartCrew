@@ -6,47 +6,35 @@ One of the things that irritates me is that my crews keeps sticking themselves o
 
 Features:
 
-    1.3
-        • Crew members now have an internal daily schedule which means that they won't stick on the anchors permanently.
-        • Individual crew's schedule have activities/tasks which is set every "ship day". This means that they have several activities/tasks everyday!
-        • Current activities/tasks include "lounge", "roam", "sleep" and "work".
-        • Lounging crews will make them sit around on chairs nearby.
-        • Roaming crews will patrol your ship at random places.
-        • Sleeping will vary from the crew's schedule defined at the config file (you may fiddle around the config if you know what you're doing and you're using the DRM Free version).
-        • Working crews will go to their respective "anchors" doing their jobs that relates to their role.
-        • You may see them reacting doing stuffs with a small chance of them doing monolouge along with it.
+    • Improved crew behavior which makes them not hang around teleporter while on the ship.
+    • Ship Crew members will actually "work" on certain items on ship depending on their role.
+    • Internal schedule system so ship crew members will not always be anchored on the item they're assigned to.
 
-    1.2
-        • Updated core functions to the latest Starbound Update.
-        • Mostly code cleanup (independent files and patches) and some programming stuff. As for the rest of it, I won't go full nerd about the details.
-        • Setup a Github repo (still private at the moment).
+----------------------------------------------------------
 
-    1.1
+Anchor Items:
 
-        • Config file for you to place more crew jobs and/or items (anchor.config) OH YURR!
-        • Chemists will stick around on any of these new items: Red, Blue and Green Flask (redflask), (greenflask), (blueflask).
-        • Engineers will stick around on any Furnace or Inventor's Table upgraded or not.
-        • Jannies will hang around on any Trash Bag (trashbag), Trash Can (trashcan) (hylotltrashcan) and Poop (poop).
-        • Outlaws will stick around on any Gun Chests (gunchest), Treasure Barrel (barrelgoldfilled), Treasure-Filled Crate (woodencrategoldfilled), Target Dummy (targetdummy), and Medieval Map (medievalmap).
-        • Soldiers will stick around on any of these new items: Target Dummy (targetdummy), and Medieval Map (medievalmap).
-        • Tailor will stick around on any Spinning Wheel upgraded or not.
+    • Chef: "apexoven", "campfire", "floranstove", "kitchenstovetop", "medievallargecookingpot", "microwave", "nanostove", "outpostcookingtable", "outpostmicrowave", "rusticoven", "woodencookingtable"
+    • Chemist: "apexcoolshelf2", "blueflask", "greenflask", "redflask"
+    • Engineer: "craftingfurnace", "inventorstable"
+    • Janitor: "hylotltrashcan", "poop", "trashbag", "trashcan"
+    • Mechanic: "apexfuelhatch", "tier3switch", "tier4switch"
+    • Medic: "apexmedsign", "stationmedscanner"
+    • Outlaw: "gunchest", "barrelgoldfilled","medievalmap","targetdummy", "woodencrategoldfilled"
+    • Soldier: "gunchest", "medievalmap", "targetdummy"
+    • Tailor: "apexcoolchair", "craftingwheel"
 
-    1.0
-
-        • Chemists will stick around on any Cool Chemical Shelf (apexcoolshelf2).
-        • Mechanics will stick around on any Titanium or Durasteel console.
-        • Medics will stick around on Medical Bay Sign (apexmedsign) or Station Medical Scanner (stationmedscanner).
-        • Soldiers will stick around on places in your ship with Gun Chests (gunchest).
-
-If you happen not to have these items on your ship, don't worry! they will find random objects to hang around instead!
+    If you happen not to have these items on your ship, don't worry! they will find random objects to hang around instead!
 
 ----------------------------------------------------------
 
 Compatibility:
 
-    Test List as of [30 June, 2019]:
+    Test List as of [6 July, 2019]:
  
         ✓ Vanilla - Passed
+        ✓ Chef Crewman - Passed
+        ✓ Datebound - Passed
         ✓ Earth's Finest - Passed
         ✓ FU - Passed
 
