@@ -5,21 +5,13 @@
 		"value": "/scripts/actions/crew.lua"
 	}, {
 		"op": "add",
-		"path": "/scripts/-",
-		"value": "/scripts/actions/smartcrew_core.lua"
-	}, {
-		"op": "add",
-		"path": "/scripts/-",
-		"value": "/scripts/actions/smartcrew_utils.lua"
-	}, {
-		"op": "add",
 		"path": "/parameters/crewSeatRange",
 		"value": 2
 	}, {
 		"op": "replace",
 		"path": "/root/children/0",
 		"value": {
-            "title": "seattSelector",
+            "title": "seatSelector",
             "type": "composite",
             "name": "selector",
             "parameters": {},
@@ -42,7 +34,7 @@
                             "parameters": {
                                 "orderBy": {"value": "nearest"},
                                 "orientation": {"value": "sit"},
-                                "position": {"key": "spawn"},
+                                "position": {"key": "self"},
                                 "range": {"value": 450},
                                 "unoccupied": {"value": true}
                             },

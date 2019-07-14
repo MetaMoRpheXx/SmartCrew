@@ -2,6 +2,8 @@ Overview:
 
 One of the things that irritates me is that my crews keeps sticking themselves on the teleporter all the time, which inspired me to create this mod despite of my really tight schedule. Now your crews are much more active than fiddling with your teleporter! (probably because your crew and the other bois at 2am are looking for BEANS). This mod is for you if you don't like your crews looking like canned sausages. The current state is stable but still, it is imperative that you backup your saves before you start using this mod. If you happen to find a bug, please provide a link to your starbound.log file, trust me, it'll benefit the both of us. I'll work it out on the best available weekend I got.
 
+This is my first mod btw, go easy on me.
+
 ----------------------------------------------------------
 
 Features:
@@ -30,13 +32,14 @@ Anchor Items:
 
 Compatibility:
 
-    Test List as of [6 July, 2019]:
+    Test List as of [14 July, 2019]:
  
         ✓ Vanilla - Passed
         ✓ Chef Crewman - Passed
         ✓ Datebound - Passed
         ✓ Earth's Finest - Passed
         ✓ FU - Passed
+        ✓ Nonuniform - Passed
 
     Other Compatibility Notes:
 

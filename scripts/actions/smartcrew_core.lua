@@ -9,7 +9,6 @@ local taskDefaults = root.assetJson("/smartcrew.config:taskDefaults")
 local taskDefaultActions = root.assetJson("/smartcrew.config:taskDefaultActions")
 local taskDefaultEmotes = root.assetJson("/smartcrew.config:taskDefaultEmotes")
 local taskChangeActivityChance = root.assetJson("/smartcrew.config:taskChangeActivityChance")
-local anchorKeysRole = {}
 local taskCrewStatus = {}
 
 function mmrx_crewCheckShip(args, board)
@@ -35,31 +34,29 @@ function mmrx_crewFindRoleAnchor(args, board)
 	local crewAnchor = world.objectQuery(args.position, 450)
 	local crewName = world.entityName(args.entity)
 	local crewRole = string.gsub(args.role, "%s+", "")
+	local anchorKeysRole = {}
 	local anchorKeysRandom = {}
-
-	anchorKeysRole[crewRole] = {}
-
-	local roleAnchor = anchorKeysRole[crewRole]
 
 	for a, b in pairs(crewAnchor) do
 		local objectName = world.entityName(b)
 
-		for c, d in pairs(roleAnchorItems) do
-			for e, f in ipairs(d) do
-				if c == crewRole and f == objectName then
-					roleAnchor[#roleAnchor+1] = a
-
-					-- mmrx_testLog("mmrx_crewFindRoleAnchor", "Added " .. f .. " on " .. crewRole .. " anchorKeysRole table with an entity id of " .. b .. " and key " .. a .. ". Proceeding.")
-				else
+		if roleAnchorItems[crewRole] ~= nil then
+			for c, d in pairs(roleAnchorItems[crewRole]) do
+				if d == objectName then
+					anchorKeysRole[#anchorKeysRole+1] = a
+					-- mmrx_testLog("mmrx_crewFindRoleAnchor", "Added " .. d .. " on " .. crewRole .. " anchorKeysRole table with an entity id of " .. b .. " and key " .. a .. ". Proceeding.")
+				elseif #anchorKeysRandom <= 15 then
 					anchorKeysRandom[#anchorKeysRandom+1] = a
 				end
 			end
+		elseif #anchorKeysRandom <= 15 then
+			anchorKeysRandom[#anchorKeysRandom+1] = a
 		end
 	end
 
-	if next(roleAnchor) ~= nil then
+	if roleAnchorItems[crewRole] ~= nil and next(anchorKeysRole) ~= nil then
 
-		local anchorIndex = roleAnchor[math.random(1, #roleAnchor)]
+		local anchorIndex = anchorKeysRole[math.random(1, #anchorKeysRole)]
 		local anchorItem = crewAnchor[anchorIndex]
 		local anchorName = world.entityName(anchorItem)
 
@@ -125,6 +122,7 @@ function mmrx_crewPickScheduledTask(args, board)
 	if taskCrewStatus[crewRole .. "_" .. crewName] == nil then
 		taskCrewStatus[crewRole .. "_" .. crewName] = {}
 		taskCrewStatus[crewRole .. "_" .. crewName][dayNow] = {
+			prevact = "",
 			current = 1,
 			activities = {}
 		}
@@ -133,6 +131,7 @@ function mmrx_crewPickScheduledTask(args, board)
 	if taskCrewStatus[crewRole .. "_" .. crewName][dayNow] == nil then
 		taskCrewStatus[crewRole .. "_" .. crewName] = {}
 		taskCrewStatus[crewRole .. "_" .. crewName][dayNow] = {
+			prevact = "",
 			current = 1,
 			activities = {}
 		}
@@ -195,29 +194,69 @@ function mmrx_crewPickScheduledTask(args, board)
 
 	for a, b in pairs(taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]) do
 		if util.isTimeInRange(timeNow, b["schedule"]) == true then
+			if b["task"] == "sleep" and taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["prevact"] == "sleep" then
+				-- mmrx_testLog("mmrx_crewPickScheduledTask", crewName .. " (" .. crewRole .. ") is already doing " .. b["task"] .. " task, successfully filtered duplicate task (Current Time: " .. timeNow .. ")")
+
+				return false
+			end
+
+			taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["prevact"] = b["task"]
 			taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["current"] = a
 
-			-- mmrx_testLog("mmrx_crewPickScheduledTask", crewName .. " (" .. crewRole .. ") is now doing " .. b["task"] .. " with a schedule of " .. b["schedule"][1] .. " to " .. b["schedule"][2])
+			-- mmrx_testLog("mmrx_crewPickScheduledTask", crewName .. " (" .. crewRole .. ") is now doing " .. b["task"] .. " with a schedule of " .. b["schedule"][1] .. " to " .. b["schedule"][2] .. " (Current Time: " .. timeNow .. ")")
 
 			return true, {task = b["task"]}
 		end
+	end
+
+	return false
+end
+
+function mmrx_crewCheckCurrentTask(args, board)
+	local dayNow = world.day()
+	local timeNow = world.timeOfDay()
+	local crewName = world.entityName(args.entity)
+	local crewRole = string.gsub(args.role, "%s+", "")
+
+	if taskCrewStatus[crewRole .. "_" .. crewName] ~= nil and taskCrewStatus[crewRole .. "_" .. crewName][dayNow] ~= nil then
+		local crewTasks =  taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]
+		local crewTaskCurrent =  taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["current"]
+
+		if util.isTimeInRange(timeNow, crewTasks[crewTaskCurrent]["schedule"]) == true then
+
+			-- mmrx_testLog("mmrx_crewPickScheduledTask", crewName .. " (" .. crewRole .. ") is currently doing " .. crewTasks[crewTaskCurrent]["task"] .. " up until ".. crewTasks[crewTaskCurrent]["schedule"][2] .. " (Current Time: " .. timeNow .. ")")
+
+			return true
+		else
+			-- mmrx_testLog("mmrx_crewPickScheduledTask", crewName .. " (" .. crewRole .. ") is currently doing " .. crewTasks[crewTaskCurrent]["task"] .. " and cannot be bothered to " .. args.taskqueue .. " right now, maybe later. (Current Time: " .. timeNow .. ")")
+
+			return false
+		end
+	else
+		return false
 	end
 end
 
 function mmrx_crewDoScheduledTask(args, board)
 	local dayNow = world.day()
-	local timeOfDay = world.timeOfDay()
 	local crewName = world.entityName(args.entity)
 	local crewRole = string.gsub(args.role, "%s+", "")
-	local crewTaskList = taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]
-	local crewCurrent = taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["current"]
-	local crewCurrentTask = crewTaskList[crewCurrent]
 
-	-- mmrx_testLog("mmrx_crewDoScheduledTask", crewName .. " (" .. crewRole .. ") agreed to " .. args.taskpick .. " (" .. crewCurrentTask["task"] .. " pulled from table) from " .. crewCurrentTask["schedule"][1] .. " to " .. crewCurrentTask["schedule"][2])
+	if taskCrewStatus[crewRole .. "_" .. crewName] ~= nil and taskCrewStatus[crewRole .. "_" .. crewName][dayNow] ~= nil then
+		local crewTaskList = taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]
+		local crewCurrent = taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["current"]
+		local crewCurrentTask = crewTaskList[crewCurrent]
 
-	if args.taskpick == args.taskqueue then
-		return true, {duration = crewCurrentTask["schedule"]}
+		if args.taskpick == args.taskqueue then
+			-- mmrx_testLog("mmrx_crewDoScheduledTask", crewName .. " (" .. crewRole .. ") agreed to " .. args.taskpick .. " (" .. crewCurrentTask["task"] .. " pulled from table) from " .. crewCurrentTask["schedule"][1] .. " to " .. crewCurrentTask["schedule"][2])
+
+			return true, {duration = crewCurrentTask["schedule"]}
+		else
+			return false
+		end
 	else
+		-- mmrx_testLog("mmrx_crewDoScheduledTask", "No tasks found, skipping")
+
 		return false
 	end
 end

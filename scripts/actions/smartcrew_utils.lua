@@ -6,17 +6,9 @@ local prevLogType = ""
 local enableLog = true;
 
 function mmrx_getCrewRole(args, board)
-	local crewDetails = config.getParameter("crew.role", {})
+	local crewRoleName = config.getParameter("crew.role.name", {})
 
-	for h,i in pairs(crewDetails) do
-		if type(i) == "table" then
-			-- future reference
-		else
-			if h == "name" then
-				return true, {role = i}
-			end
-		end
-	end
+	return true, {role = crewRoleName}
 end
 
 function mmrx_getCrewLounging(args, board)

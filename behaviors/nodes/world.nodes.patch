@@ -71,6 +71,22 @@
 		}
 	}, {
 		"op": "add",
+		"path": "/mmrx_crewCheckCurrentTask",
+		"value": {
+			"type": "action",
+			"name": "mmrx_crewCheckCurrentTask",
+			"title": "",
+			"properties": {
+				"entity": {"type": "entity", "value": null},
+				"role": {"type": "string", "value": null},
+				"taskqueue": {"type": "string", "value": null}
+			},
+			"category": "world",
+			"script": "/scripts/actions/smartcrew_core.lua",
+			"output": {}
+		}
+	}, {
+		"op": "add",
 		"path": "/mmrx_crewDoScheduledTask",
 		"value": {
 			"type": "action",
