@@ -21,6 +21,113 @@
 		"path": "/parameters/crewStationRange",
 		"value": 2
 	}, {
+		"op": "add",
+		"path": "/root/children/0/children/0/children/0/children/1",
+		"value": {
+			"title": null,
+			"type": "composite",
+			"name": "sequence",
+			"parameters": {},
+			"children": [
+				{
+					"title": "hasRecruiter",
+					"type": "action",
+					"name": "hasRecruiter",
+					"parameters": {}
+				}, {
+					"title": "inverter",
+					"type": "decorator",
+					"name": "inverter",
+					"parameters": {},
+					"child": {
+						"title": "isFollowingRecruiter",
+						"type": "action",
+						"name": "isFollowingRecruiter",
+						"parameters": {}
+					}
+				}, {
+					"title": "mmrx_getCrewRole",
+					"type": "action",
+					"name": "mmrx_getCrewRole",
+					"parameters": {},
+					"output": {
+						"role": "crewrole"
+					}
+				}, {
+					"title": "mmrx_crewFindRoleAnchor",
+					"type": "action",
+					"name": "mmrx_crewFindRoleAnchor",
+					"parameters": {
+						"entity": {
+							"key": "self"
+						},
+						"position": {
+							"key": "self"
+						},
+						"role": {
+							"key": "crewrole"
+						}
+					},
+					"output": {
+						"entity": "marker"
+					}
+				}, {
+					"title": "entityPosition",
+					"type": "action",
+					"name": "entityPosition",
+					"parameters": {
+						"name": {
+							"value": "initMarker"
+						},
+						"entity": {
+							"key": "marker"
+						}
+					},
+					"output": {
+						"position": "home"
+					}
+				}
+			]
+		}
+	}, {
+		"op": "replace",
+		"path": "/root/children/0/children/0/children/0/children/2",
+		"value": {
+			"title": null,
+			"type": "composite",
+			"name": "sequence",
+			"parameters": {},
+			"children": [
+				{
+					"title": "inverter",
+					"type": "decorator",
+					"name": "inverter",
+					"parameters": {},
+					"child": {
+						"title": "hasRecruiter",
+						"type": "action",
+						"name": "hasRecruiter",
+						"parameters": {}
+					}
+				}, {
+					"title": "offsetPosition",
+					"type": "action",
+					"name": "offsetPosition",
+					"parameters": {
+						"offset": {
+							"value": [0, 0]
+						},
+						"position": {
+							"key": "spawn"
+						}
+					},
+					"output": {
+						"position": "home"
+					}
+				}
+			]
+		}
+	}, {
 		"op": "replace",
 		"path": "/root/children/0/children/0/children/1",
 		"value": {

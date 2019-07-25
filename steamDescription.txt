@@ -5,13 +5,11 @@ One of the things that irritates me is that my crews keeps sticking themselves o
 This is my first mod btw, go easy on me.
 
 [h1]Features:[/h1]
-
     [list][*]Improved crew behavior which makes them not hang around teleporter while on the ship.
     [*]Ship Crew members will actually "work" on certain items on ship depending on their role.
     [*]Internal schedule system so ship crew members will not always be anchored on the item they're assigned to.[/list]
 
 [h1]Anchor Items:[/h1]
-
     [list][*][b]Chef[/b]: apexoven, campfire, floranstove, kitchenstovetop, medievallargecookingpot, microwave, nanostove, outpostcookingtable, outpostmicrowave, rusticoven, woodencookingtable
     [*][b]Chemist[/b]: apexcoolshelf2, blueflask, greenflask, redflask
     [*][b]Engineer[/b]: craftingfurnace, inventorstable
