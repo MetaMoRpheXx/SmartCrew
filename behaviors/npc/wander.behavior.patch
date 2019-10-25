@@ -3,8 +3,7 @@
 		"op": "add",
 		"path": "/scripts/-",
 		"value": "/scripts/actions/npc.lua"
-	},
-	{
+	}, {
 		"op": "add",
 		"path": "/scripts/-",
 		"value": "/scripts/actions/smartcrew_core.lua"
@@ -14,17 +13,18 @@
 		"value": "/scripts/actions/smartcrew_utils.lua"
 	}, {
 		"op": "add",
-		"path": "/parameters/shipRange",
-		"value": 450
-	}, {
-		"op": "add",
-		"path": "/parameters/crewStationRange",
-		"value": 2
-	}, {
-		"op": "add",
-		"path": "/root/children/0/children/0/children/0/children/1",
+		"path": "/root/children/0/children/0",
 		"value": {
-			"title": null,
+			"title": "smartcrew_core",
+			"type": "module",
+			"name": "smartcrew_core",
+			"parameters": {}
+		}
+	}, {
+		"op": "add",
+		"path": "/root/children/0/children/1/children/0/children/0",
+		"value": {
+			"title": "sequence",
 			"type": "composite",
 			"name": "sequence",
 			"parameters": {},
@@ -34,7 +34,8 @@
 					"type": "action",
 					"name": "hasRecruiter",
 					"parameters": {}
-				}, {
+				},
+				{
 					"title": "inverter",
 					"type": "decorator",
 					"name": "inverter",
@@ -46,17 +47,17 @@
 						"parameters": {}
 					}
 				}, {
-					"title": "mmrx_getCrewRole",
+					"title": "smartcrew_getCrewRole",
 					"type": "action",
-					"name": "mmrx_getCrewRole",
+					"name": "smartcrew_getCrewRole",
 					"parameters": {},
 					"output": {
-						"role": "crewrole"
+						"role": "crewRole"
 					}
 				}, {
-					"title": "mmrx_crewFindRoleAnchor",
+					"title": "smartcrew_getRoleAnchor",
 					"type": "action",
-					"name": "mmrx_crewFindRoleAnchor",
+					"name": "smartcrew_getRoleAnchor",
 					"parameters": {
 						"entity": {
 							"key": "self"
@@ -65,60 +66,39 @@
 							"key": "self"
 						},
 						"role": {
-							"key": "crewrole"
+							"key": "crewRole"
 						}
 					},
 					"output": {
-						"entity": "marker"
+						"entity": "crewRoleAnchor"
 					}
-				}, {
+				},
+				{
 					"title": "entityPosition",
 					"type": "action",
 					"name": "entityPosition",
 					"parameters": {
-						"name": {
-							"value": "initMarker"
-						},
 						"entity": {
-							"key": "marker"
+							"key": "crewRoleAnchor"
 						}
 					},
 					"output": {
-						"position": "home"
+						"position": "crewRoleAnchor"
 					}
-				}
-			]
-		}
-	}, {
-		"op": "replace",
-		"path": "/root/children/0/children/0/children/0/children/2",
-		"value": {
-			"title": null,
-			"type": "composite",
-			"name": "sequence",
-			"parameters": {},
-			"children": [
+				},
 				{
-					"title": "inverter",
-					"type": "decorator",
-					"name": "inverter",
-					"parameters": {},
-					"child": {
-						"title": "hasRecruiter",
-						"type": "action",
-						"name": "hasRecruiter",
-						"parameters": {}
-					}
-				}, {
 					"title": "offsetPosition",
 					"type": "action",
 					"name": "offsetPosition",
 					"parameters": {
 						"offset": {
-							"value": [0, 0]
+							"value": [
+								0,
+								0
+							]
 						},
 						"position": {
-							"key": "spawn"
+							"key": "crewRoleAnchor"
 						}
 					},
 					"output": {
@@ -129,15 +109,210 @@
 		}
 	}, {
 		"op": "replace",
-		"path": "/root/children/0/children/0/children/1",
+		"path": "/root/children/1",
 		"value": {
-			"title": "followRangeSelector",
+			"title": "succeeder",
+			"type": "decorator",
+			"name": "succeeder",
+			"parameters": {},
+			"child": {
+				"title": "selector",
+				"type": "composite",
+				"name": "selector",
+				"parameters": {},
+				"children": [
+					{
+						"title": "sequence",
+						"type": "composite",
+						"name": "sequence",
+						"parameters": {},
+						"children": [
+							{
+								"title": "inverter",
+								"type": "decorator",
+								"name": "inverter",
+								"parameters": {},
+								"child": {
+									"title": "hasRecruiter",
+									"type": "action",
+									"name": "hasRecruiter",
+									"parameters": {}
+								}
+							},
+							{
+								"title": "multiply",
+								"type": "action",
+								"name": "multiply",
+								"parameters": {
+									"factor": {"value": 3},
+									"number": {"key": "facingDirection"}
+								},
+								"output": {
+									"result": "wallCheck"
+								}
+							},
+							{
+								"title": "lineTileCollision",
+								"type": "action",
+								"name": "lineTileCollision",
+								"parameters": {
+									"collisionType": {"value": ["Null", "Block", "Dynamic"]},
+									"offset": {"value": ["wallCheck", 0]},
+									"position": {"key": "self"}
+								}
+							},
+							{
+								"title": "reverseDirection",
+								"type": "action",
+								"name": "reverseDirection",
+								"parameters": {
+									"direction": {"key": "facingDirection"}
+								},
+								"output": {
+									"direction": "back"
+								}
+							},
+							{
+								"title": "faceDirection",
+								"type": "action",
+								"name": "faceDirection",
+								"parameters": {
+									"direction": {"key": "back"}
+								}
+							}
+						]
+					},
+					{
+						"title": "sequence",
+						"type": "composite",
+						"name": "sequence",
+						"parameters": {},
+						"children": [
+							{
+								"title": "hasRecruiter",
+								"type": "action",
+								"name": "hasRecruiter",
+								"parameters": {}
+							},
+							{
+								"title": "isFollowingRecruiter",
+								"type": "action",
+								"name": "isFollowingRecruiter",
+								"parameters": {}
+							},
+							{
+								"title": "multiply",
+								"type": "action",
+								"name": "multiply",
+								"parameters": {
+									"factor": {"value": 3},
+									"number": {"key": "facingDirection"}
+								},
+								"output": {
+									"result": "wallCheck"
+								}
+							},
+							{
+								"title": "lineTileCollision",
+								"type": "action",
+								"name": "lineTileCollision",
+								"parameters": {
+									"collisionType": {"value": ["Null", "Block", "Dynamic"]},
+									"offset": {"value": ["wallCheck", 0]},
+									"position": {"key": "self"}
+								}
+							},
+							{
+								"title": "reverseDirection",
+								"type": "action",
+								"name": "reverseDirection",
+								"parameters": {
+									"direction": {"key": "facingDirection"}
+								},
+								"output": {
+									"direction": "back"
+								}
+							},
+							{
+								"title": "faceDirection",
+								"type": "action",
+								"name": "faceDirection",
+								"parameters": {
+									"direction": {"key": "back"}
+								}
+							}
+						]
+					}
+				]
+			}
+		}
+	}, {
+		"op": "replace",
+		"path": "/root/children/2",
+		"value": {
+			"title": "selector",
 			"type": "composite",
 			"name": "selector",
 			"parameters": {},
 			"children": [
 				{
-					"title": "rangeRecruiterNotFollow",
+					"title": "sequence",
+					"type": "composite",
+					"name": "sequence",
+					"parameters": {},
+					"children": [
+						{
+							"title": "inverter",
+							"type": "decorator",
+							"name": "inverter",
+							"parameters": {},
+							"child": {
+								"title": "hasRecruiter",
+								"type": "action",
+								"name": "hasRecruiter",
+								"parameters": {}
+							}
+						},
+						{
+							"title": "timer",
+							"type": "action",
+							"name": "timer",
+							"parameters": {
+								"time": {"value": "<idleTime>"}
+							}
+						}
+					]
+				},
+				{
+					"title": "sequence",
+					"type": "composite",
+					"name": "sequence",
+					"parameters": {},
+					"children": [
+						{
+							"title": "hasRecruiter",
+							"type": "action",
+							"name": "hasRecruiter",
+							"parameters": {}
+						},
+						{
+							"title": "isFollowingRecruiter",
+							"type": "action",
+							"name": "isFollowingRecruiter",
+							"parameters": {}
+						},
+						{
+							"title": "timer",
+							"type": "action",
+							"name": "timer",
+							"parameters": {
+								"time": {"value": "<idleTime>"}
+							}
+						}
+					]
+				},
+				{
+					"title": "sequence",
 					"type": "composite",
 					"name": "sequence",
 					"parameters": {},
@@ -161,461 +336,14 @@
 							}
 						},
 						{
-							"title": "inverter",
-							"type": "decorator",
-							"name": "inverter",
-							"parameters": {},
-							"child": {
-								"title": "inRange",
-								"type": "action",
-								"name": "inRange",
-								"parameters": {
-									"name": {"value": "defaultShipRange"},
-									"position": {"key": "self"},
-									"range": {"key": "<shipRange>"},
-									"target": {"key": "home"}
-								}
-							}
-						}
-					]	
-				},
-				{
-					"title": "rangeRecruiterFollow",
-					"type": "composite",
-					"name": "sequence",
-					"parameters": {},
-					"children": [
-						{
-							"title": "hasRecruiter",
+							"title": "withinTimeRange",
 							"type": "action",
-							"name": "hasRecruiter",
-							"parameters": {}
-						},
-						{
-							"title": "isFollowingRecruiter",
-							"type": "action",
-							"name": "isFollowingRecruiter",
-							"parameters": {}
-						},
-						{
-							"title": "inverter",
-							"type": "decorator",
-							"name": "inverter",
-							"parameters": {},
-							"child": {
-								"title": "inRange",
-								"type": "action",
-								"name": "inRange",
-								"parameters": {
-									"name": {"value": "defaultFollowingRange"},
-									"position": {"key": "self"},
-									"range": {"key": "<innerHomeRange>"},
-									"target": {"key": "home"}
-								}
+							"name": "withinTimeRange",
+							"parameters": {
+								"range": {"value": [0, 1]}
 							}
 						}
-					]	
-				},
-				{
-					"title": "rangeDefault",
-					"type": "composite",
-					"name": "sequence",
-					"parameters": {},
-					"children": [
-						{
-							"title": "inverter",
-							"type": "decorator",
-							"name": "inverter",
-							"parameters": {},
-							"child": {
-								"title": "hasRecruiter",
-								"type": "action",
-								"name": "hasRecruiter",
-								"parameters": {}
-							}
-						},
-						{
-							"title": "inverter",
-							"type": "decorator",
-							"name": "inverter",
-							"parameters": {},
-							"child": {
-								"title": "inRange",
-								"type": "action",
-								"name": "inRange",
-								"parameters": {
-									"name": {"value": "defaultNPCRange"},
-									"position": {"key": "self"},
-									"range": {"key": "<outerHomeRange>"},
-									"target": {"key": "home"}
-								}
-							}
-						}
-					]	
-				}
-			]
-		}
-	}, {
-		"op": "add",
-		"path": "/root/children/0/children/1/children/0",
-		"value": {
-			"title": null,
-			"type": "decorator",
-			"name": "inverter",
-			"parameters": {},
-			"child": {
-				"title": "hasRecruiter",
-				"type": "action",
-				"name": "hasRecruiter",
-				"parameters": {}
-			}
-		}
-	}, {
-		"op": "add",
-		"path": "/root/children/0/children/2/children/0",
-		"value": {
-			"title": null,
-			"type": "decorator",
-			"name": "inverter",
-			"parameters": {},
-			"child": {
-				"title": "hasRecruiter",
-				"type": "action",
-				"name": "hasRecruiter",
-				"parameters": {}
-			}
-		}
-	}, {
-		"op": "add",
-		"path": "/root/children/0/children/3/children/0",
-		"value": {
-			"title": null,
-			"type": "decorator",
-			"name": "inverter",
-			"parameters": {},
-			"child": {
-				"title": "hasRecruiter",
-				"type": "action",
-				"name": "hasRecruiter",
-				"parameters": {}
-			}
-		}
-	}, {
-		"op": "add",
-		"path": "/root/children/0/children/0",
-		"value": {
-			"title": "smartCrewBehavior",
-			"type": "composite",
-			"name": "sequence",
-			"parameters": {},
-			"children": [
-				{
-					"title": "hasRecruiter",
-					"type": "action",
-					"name": "hasRecruiter",
-					"parameters": {}
-				}, {
-					"title": "inverter",
-					"type": "decorator",
-					"name": "inverter",
-					"parameters": {},
-					"child": {
-						"title": "isFollowingRecruiter",
-						"type": "action",
-						"name": "isFollowingRecruiter",
-						"parameters": {}
-					}
-				}, {
-					"title": "mmrx_getCrewRole",
-					"type": "action",
-					"name": "mmrx_getCrewRole",
-					"parameters": {},
-					"output": {
-						"role": "crewrole"
-					}
-				}, {
-					"title": "mmrx_crewPickScheduledTask",
-					"type": "action",
-					"name": "mmrx_crewPickScheduledTask",
-					"parameters": {
-						"entity": {"key": "self"},
-						"role": {"key": "crewrole"}
-					},
-					"output": {
-						"task": "crewpickedtask"
-					}
-				}, {
-					"title": null,
-					"type": "decorator",
-					"name": "succeeder",
-					"parameters": {},
-					"child": {
-						"title": "taskSelection",
-						"type": "composite",
-						"name": "selector",
-						"parameters": {},
-						"children": [
-							{
-								"title": "loungeTask",
-								"type": "composite",
-								"name": "sequence",
-								"parameters": {},
-								"children": [
-									{
-										"title": "",
-										"type": "action",
-										"name": "mmrx_crewDoScheduledTask",
-										"parameters": {
-											"entity": {"key": "self"},
-											"role": {"key": "crewrole"},
-											"taskpick": {"key": "crewpickedtask"},
-											"taskqueue": {"value": "lounge"}
-										},
-										"output": {
-											"duration": "loungeDuration"
-										}
-									}, {
-										"title": null,
-										"type": "decorator",
-										"name": "succeeder",
-										"parameters": {},
-										"child": {
-											"title": "sit",
-											"type": "module",
-											"name": "sit",
-											"parameters": {}
-										}
-									}
-								]
-							}, {
-								"title": "roamTask",
-								"type": "composite",
-								"name": "sequence",
-								"parameters": {},
-								"children": [
-									{
-										"title": "",
-										"type": "action",
-										"name": "mmrx_crewDoScheduledTask",
-										"parameters": {
-											"entity": {"key": "self"},
-											"role": {"key": "crewrole"},
-											"taskpick": {"key": "crewpickedtask"},
-											"taskqueue": {"value": "roam"}
-										}
-									}, {
-										"title": null,
-										"type": "decorator",
-										"name": "succeeder",
-										"parameters": {},
-										"child": {
-											"title": "roam",
-											"type": "module",
-											"name": "patrol",
-											"parameters": {}
-										}
-									}
-								]
-							}, {
-								"title": "sleepTask",
-								"type": "composite",
-								"name": "sequence",
-								"parameters": {},
-								"children": [
-									{
-										"title": "",
-										"type": "action",
-										"name": "mmrx_crewDoScheduledTask",
-										"parameters": {
-											"entity": {"key": "self"},
-											"role": {"key": "crewrole"},
-											"taskpick": {"key": "crewpickedtask"},
-											"taskqueue": {"value": "sleep"}
-										},
-										"output": {
-											"duration": "sleepDuration"
-										}
-									}, {
-										"title": null,
-										"type": "decorator",
-										"name": "succeeder",
-										"parameters": {},
-										"child": {
-											"title": "sleep",
-											"type": "module",
-											"name": "sleep",
-											"parameters": {
-												"sleepUntil": {"key": "sleepDuration"}
-											}
-										}
-									}
-								]
-							}, {
-								"title": "workTask",
-								"type": "composite",
-								"name": "sequence",
-								"parameters": {},
-								"children": [
-									{
-										"title": "",
-										"type": "action",
-										"name": "mmrx_crewDoScheduledTask",
-										"parameters": {
-											"entity": {
-												"key": "self"
-											},
-											"role": {
-												"key": "crewrole"
-											},
-											"taskpick": {
-												"key": "crewpickedtask"
-											},
-											"taskqueue": {
-												"value": "work"
-											}
-										},
-										"output": {
-											"duration": "workDuration"
-										}
-									}, {
-										"title": "mmrx_crewFindRoleAnchor",
-										"type": "action",
-										"name": "mmrx_crewFindRoleAnchor",
-										"parameters": {
-											"entity": {
-												"key": "self"
-											},
-											"position": {
-												"key": "self"
-											},
-											"role": {
-												"key": "crewrole"
-											}
-										},
-										"output": {
-											"entity": "marker"
-										}
-									}, {
-										"title": "entityPosition",
-										"type": "action",
-										"name": "entityPosition",
-										"parameters": {
-											"name": {
-												"value": "workMarker"
-											},
-											"entity": {
-												"key": "marker"
-											}
-										},
-										"output": {
-											"position": "station"
-										}
-									}, {
-										"title": "parallel",
-										"type": "composite",
-										"name": "parallel",
-										"parameters": {
-											"fail": {"value": -1},
-											"success": {"value": 1}
-										},
-										"children": [
-											{
-												"title": "selector",
-												"type": "composite",
-												"name": "selector",
-												"parameters": {},
-												"children": [
-													{
-														"title": "",
-														"type": "action",
-														"name": "moveToPosition",
-														"parameters": {
-															"pathOptions": {"value": {"returnBest": true}},
-															"position": {"key": "station"},
-															"run": {"key": "<alwaysRun>"}
-														}
-													}, {
-														"title": "parallel",
-														"type": "composite",
-														"name": "parallel",
-														"parameters": {
-															"fail": {"value": 2},
-															"success": {"value": 2}
-														},
-														"children": [
-															{
-																"title": "distance",
-																"type": "action",
-																"name": "distance",
-																"parameters": {
-																	"from": {"key": "self"},
-																	"to": {"key": "station"}
-																},
-																"output": {
-																	"x": "stationX"
-																}
-															}, {
-																"title": "inRange",
-																"type": "action",
-																"name": "inRange",
-																"parameters": {
-																	"position": {"key": "self"},
-																	"range": {"key": "<crewStationRange>"},
-																	"target": {"key": "station"}
-																}
-															}, {
-																"title": "move",
-																"type": "action",
-																"name": "move",
-																"parameters": {
-																	"direction": {"key": "stationX"},
-																	"run": {"value": false}
-																}
-															}
-														]
-													}
-												]
-											}, {
-												"title": "inRange",
-												"type": "action",
-												"name": "inRange",
-												"parameters": {
-													"position": {"key": "self"},
-													"range": {"value": 1},
-													"target": {"key": "station"}
-												}
-											}
-										]
-									}, {
-										"title": "mmrx_crewWorkRoleAction",
-										"type": "action",
-										"name": "mmrx_crewWorkRoleAction",
-										"parameters": {
-											"entity": {"key": "self"},
-											"role": {"key": "crewrole"},
-											"task": {"key": "crewpickedtask"}
-										},
-										"output": {
-											"action": "moodAction",
-											"duration": "moodDuration",
-											"emote": "moodEmote",
-											"speech": "moodSpeech"
-										}
-									}, {
-										"title": "mmrx_setCrewMood",
-										"type": "action",
-										"name": "mmrx_setCrewMood",
-										"parameters": {
-											"action": {"key": "moodAction"},
-											"duration": {"key": "moodDuration"},
-											"emote": {"key": "moodEmote"},
-											"speech": {"key": "moodSpeech"}
-										}
-									}
-								]
-							}
-						]
-					}
+					]
 				}
 			]
 		}

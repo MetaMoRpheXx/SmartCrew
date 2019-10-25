@@ -1,0 +1,17 @@
+{
+    "smartcrew_work": {
+        "type": "module",
+        "name": "smartcrew_work",
+        "title": "smartcrew_work",
+        "properties": {
+            "task": {"type": "json", "value": "work"},
+            "timeRange": {"type": "json", "value": [0, 0.1]}
+        }
+    },
+    "smartcrew_core": {
+        "type": "module",
+        "name": "smartcrew_core",
+        "title": "smartcrew_core",
+        "properties": {}
+    }
+}

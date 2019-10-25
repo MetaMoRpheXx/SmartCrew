@@ -1,24 +1,10 @@
 [
 	{
 		"op": "add",
-		"path": "/lounge",
+		"path": "/smartcrew_getCrewRole",
 		"value": {
 			"type": "action",
-			"name": "lounge",
-			"title": "",
-			"properties": {
-				"entity": {"type": "entity", "value": null}
-			},
-			"category": "crew",
-			"script": "/scripts/actions/npc.lua",
-			"output": {}
-		}
-	}, {
-		"op": "add",
-		"path": "/mmrx_getCrewRole",
-		"value": {
-			"type": "action",
-			"name": "mmrx_getCrewRole",
+			"name": "smartcrew_getCrewRole",
 			"title": "",
 			"properties": {},
 			"category": "crew",
@@ -29,28 +15,17 @@
 		}
 	}, {
 		"op": "add",
-		"path": "/mmrx_getCrewLounging",
+		"path": "/smartcrew_setCrewReaction",
 		"value": {
 			"type": "action",
-			"name": "mmrx_getCrewLounging",
-			"title": "",
-			"properties": {},
-			"category": "crew",
-			"script": "/scripts/actions/smartcrew_utils.lua",
-			"output": {}
-		}
-	}, {
-		"op": "add",
-		"path": "/mmrx_setCrewMood",
-		"value": {
-			"type": "action",
-			"name": "mmrx_setCrewMood",
+			"name": "smartcrew_setCrewReaction",
 			"title": "",
 			"properties": {
-				"action": {"type": "string", "value": null},
 				"duration": {"type": "number", "value": null},
 				"emote": {"type": "string", "value": null},
-				"speech": {"type": "string", "value": null}
+				"reaction": {"type": "string", "value": null},
+				"speech": {"type": "string", "value": null},
+				"type": {"type": "string", "value": null}
 			},
 			"category": "crew",
 			"script": "/scripts/actions/smartcrew_utils.lua",

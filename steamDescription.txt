@@ -24,7 +24,7 @@ If you happen not to have these items on your ship, don't worry! they will find 
 
 [h1]Compatibility:[/h1]
 
-    [b]Test List as of [14 July, 2019]:[/b]
+    [b]Test List as of [25 October, 2019]:[/b]
     [list][*]Vanilla ✓
     [*]Chef Crewman ✓
     [*]Datebound ✓

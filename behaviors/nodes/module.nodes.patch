@@ -1,0 +1,17 @@
+[
+    {
+        "op": "add",
+        "path": "/sit/properties/duration", 
+        "value": {
+            "type": "vec2",
+            "value": [20, 120]
+        }
+    }, {
+        "op": "add",
+        "path": "/sit/properties/timeRange",
+        "value": {
+            "type": "vec2",
+            "value": [0, 0.1]
+        }
+    }
+]

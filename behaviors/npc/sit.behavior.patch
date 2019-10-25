@@ -4,20 +4,24 @@
 		"path": "/scripts/-",
 		"value": "/scripts/actions/crew.lua"
 	}, {
+        "op": "add",
+        "path": "/parameters/duration",
+        "value": [20, 120]
+    }, {
 		"op": "add",
-		"path": "/parameters/crewSeatRange",
-		"value": 2
+		"path": "/parameters/timeRange",
+		"value": [0, 0.1]
 	}, {
-		"op": "replace",
-		"path": "/root/children/0",
-		"value": {
-            "title": "seatSelector",
+        "op": "replace",
+        "path": "/root/children/0",
+        "value": {
+            "title": "selector",
             "type": "composite",
             "name": "selector",
             "parameters": {},
             "children": [
                 {
-                    "title": "seatFindMod",
+                    "title": "sequence",
                     "type": "composite",
                     "name": "sequence",
                     "parameters": {},
@@ -27,12 +31,12 @@
                             "type": "action",
                             "name": "hasRecruiter",
                             "parameters": {}
-                        }, {
+                        },
+                        {
                             "title": "",
                             "type": "action",
                             "name": "findLoungable",
                             "parameters": {
-                                "orderBy": {"value": "nearest"},
                                 "orientation": {"value": "sit"},
                                 "position": {"key": "self"},
                                 "range": {"value": 450},
@@ -45,17 +49,43 @@
                     ]
                 },
                 {
-                    "title": "seatFindDefault",
+                    "title": "",
+                    "type": "action",
+                    "name": "findLoungable",
+                    "parameters": {
+                        "orderBy": {"value": "nearest"},
+                        "orientation": {"value": "sit"},
+                        "position": {"key": "spawn"},
+                        "range": {"value": 80},
+                        "unoccupied": {"value": true}
+                    },
+                    "output": {
+                        "list": "loungables"
+                    }
+                }
+            ]
+        }
+    }, {
+		"op": "replace",
+		"path": "/root/children/5",
+		"value": {
+            "title": "selector",
+            "type": "composite",
+            "name": "selector",
+            "parameters": {},
+            "children": [
+                {
+                    "title": "sequence",
                     "type": "composite",
                     "name": "sequence",
                     "parameters": {},
                     "children": [
                         {
-							"title": "inverter",
-							"type": "decorator",
-							"name": "inverter",
-							"parameters": {},
-							"child": {
+                            "title": "inverter",
+                            "type": "decorator",
+                            "name": "inverter",
+                            "parameters": {},
+                            "child": {
                                 "title": "hasRecruiter",
                                 "type": "action",
                                 "name": "hasRecruiter",
@@ -63,19 +93,72 @@
                             }
                         },
                         {
-                            "title": "",
-                            "type": "action",
-                            "name": "findLoungable",
+                            "title": "parallel",
+                            "type": "composite",
+                            "name": "parallel",
                             "parameters": {
-                                "orderBy": {"value": "nearest"},
-                                "orientation": {"value": "sit"},
-                                "position": {"key": "spawn"},
-                                "range": {"value": 80},
-                                "unoccupied": {"value": true}
+                                "fail": {"value": -1},
+                                "success": {"value": -1}
                             },
-                            "output": {
-                                "list": "loungables"
-                            }
+                            "children": [
+                                {
+                                    "title": "lounge",
+                                    "type": "action",
+                                    "name": "lounge",
+                                    "parameters": {
+                                        "entity": {"key": "chair"}
+                                    }
+                                },
+                                {
+                                    "title": "",
+                                    "type": "action",
+                                    "name": "timer",
+                                    "parameters": {
+                                        "time": {"key": "<duration>"}
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "sequence",
+                    "type": "composite",
+                    "name": "sequence",
+                    "parameters": {},
+                    "children": [
+                        {
+                            "title": "hasRecruiter",
+                            "type": "action",
+                            "name": "hasRecruiter",
+                            "parameters": {}
+                        },
+                        {
+                            "title": "parallel",
+                            "type": "composite",
+                            "name": "parallel",
+                            "parameters": {
+                                "fail": {"value": 1},
+                                "success": {"value": -1}
+                            },
+                            "children": [
+                                {
+                                    "title": "lounge",
+                                    "type": "action",
+                                    "name": "lounge",
+                                    "parameters": {
+                                        "entity": {"key": "chair"}
+                                    }
+                                },
+                                {
+                                    "title": "",
+                                    "type": "action",
+                                    "name": "timer",
+                                    "parameters": {
+                                        "time": {"value": [20, 100]}
+                                    }
+                                }
+                            ]
                         }
                     ]
                 }
