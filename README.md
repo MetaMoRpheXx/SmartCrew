@@ -6,12 +6,15 @@ One of the things that irritates me is that my crews keeps sticking themselves o
 
 This is my first mod btw, go easy on me.
 
+### New Spice
+
+  - Chemists, Engineers, and Mechanic will sometimes fail at their "experiment" so you might see them explode and do minuscule amount of AoE damage. They also work hard so they sweat... a lot.
+
 ### Features
 
   - Improved crew behavior which makes them not hang around teleporter while on the ship.
   - Ship Crew members will actually "work" on certain items on ship depending on their role.
   - Internal schedule system so ship crew members will not always be anchored on the item they're assigned to.
-
 
 ### Anchor Items:
 
