@@ -9,6 +9,7 @@ This is my first mod btw, go easy on me.
 ### New Spice
 
   - Chemists, Engineers, and Mechanic will sometimes fail at their "experiment" so you might see them explode and do minuscule amount of AoE damage. They also work hard so they sweat... a lot.
+  - Outlaws and Soldiers will, now patrol the area during certain times. You needed that security after all!
 
 ### Features
 
