@@ -1,0 +1,139 @@
+{
+	"name": "smartcrew_roam",
+	"description": "",
+	"scripts": [
+		"/scripts/actions/time.lua",
+		"/scripts/actions/smartcrew_core.lua",
+		"/scripts/actions/world.lua",
+		"/scripts/actions/position.lua",
+		"/scripts/actions/movement.lua"
+	],
+	"parameters": {
+		"timeRange": [0, 0.1]
+	},
+	"root": {
+		"title": "dynamic",
+		"type": "composite",
+		"name": "dynamic",
+		"parameters": {},
+		"children": [
+			{
+				"title": "inverter",
+				"type": "decorator",
+				"name": "inverter",
+				"parameters": {},
+				"child": {
+					"title": "withinTimeRange",
+					"type": "action",
+					"name": "withinTimeRange",
+					"parameters": {
+						"range": {"key": "<timeRange>"}
+					}
+				}
+			},
+			{
+				"title": "failer",
+				"type": "decorator",
+				"name": "failer",
+				"parameters": {},
+				"child": {
+					"title": "sequence",
+					"type": "composite",
+					"name": "sequence",
+					"parameters": {},
+					"children": [
+						{
+							"title": "smartcrew_getRoleAnchor",
+							"type": "action",
+							"name": "smartcrew_getRoleAnchor",
+							"parameters": {
+								"entity": {"key": "self"},
+								"position": {"key": "self"},
+								"role": {"value": "NONE"}
+							},
+							"output": {
+								"entity": "crewRoamPoint"
+							}
+						},
+						{
+							"title": "sequence",
+							"type": "composite",
+							"name": "sequence",
+							"parameters": {},
+							"children": [
+								{
+									"title": "entityPosition",
+									"type": "action",
+									"name": "entityPosition",
+									"parameters": {
+										"entity": {"key": "crewRoamPoint"}
+									},
+									"output": {
+										"position": "crewRoamPoint"
+									}
+								},
+								{
+									"title": "",
+									"type": "action",
+									"name": "groundPosition",
+									"parameters": {
+										"avoidLiquid": {"value": true},
+										"position": {"key": "crewRoamPoint"}
+									},
+									"output": {
+										"position": "crewRoamPoint"
+									}
+								},
+								{
+									"title": "parallel",
+									"type": "composite",
+									"name": "parallel",
+									"parameters": {
+										"fail": {"value": -1},
+										"success": {"value": 1}
+									},
+									"children": [
+										{
+											"title": "",
+											"type": "action",
+											"name": "moveToPosition",
+											"parameters": {
+												"avoidLiquid": {"value": true},
+												"closeDoors": {"value": true},
+												"position": {"key": "crewWorkStation"}
+											}
+										},
+										{
+											"title": "inRange",
+											"type": "action",
+											"name": "inRange",
+											"parameters": {
+												"position": {"key": "self"},
+												"range": {"value": 3},
+												"target": {"key": "crewRoamPoint"}
+											}
+										}
+									]
+								}
+							]
+						},
+						{
+							"title": "",
+							"type": "action",
+							"name": "timer",
+							"parameters": {
+								"time": {"value": [5, 10]}
+							}
+						}
+					]
+				}
+			},
+			{
+				"title": "runner",
+				"type": "action",
+				"name": "runner",
+				"parameters": {}
+			}
+		]
+	}
+}

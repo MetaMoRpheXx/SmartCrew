@@ -1,17 +1,35 @@
 {
-    "smartcrew_work": {
-        "type": "module",
-        "name": "smartcrew_work",
-        "title": "smartcrew_work",
-        "properties": {
-            "task": {"type": "json", "value": "work"},
-            "timeRange": {"type": "json", "value": [0, 0.1]}
-        }
-    },
     "smartcrew_core": {
         "type": "module",
         "name": "smartcrew_core",
         "title": "smartcrew_core",
         "properties": {}
+    },
+    "smartcrew_patrol": {
+        "type": "module",
+        "name": "smartcrew_patrol",
+        "title": "smartcrew_patrol",
+        "properties": {
+            "patrolDuration": {"type": "number", "value": 1.75},
+            "watchDuration": {"type": "vec2", "value": [3, 7]},
+            "timeRange": {"type": "vec2", "value": [0, 0.1]}
+        }
+    },
+    "smartcrew_roam": {
+        "type": "module",
+        "name": "smartcrew_roam",
+        "title": "smartcrew_roam",
+        "properties": {
+            "timeRange": {"type": "vec2", "value": [0, 0.1]}
+        }
+    },
+    "smartcrew_work": {
+        "type": "module",
+        "name": "smartcrew_work",
+        "title": "smartcrew_work",
+        "properties": {
+            "task": {"type": "string", "value": "work"},
+            "timeRange": {"type": "vec2", "value": [0, 0.1]}
+        }
     }
 }

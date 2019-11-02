@@ -97,8 +97,12 @@
                             "type": "composite",
                             "name": "parallel",
                             "parameters": {
-                                "fail": {"value": -1},
-                                "success": {"value": -1}
+                                "fail": {
+                                    "value": -1
+                                },
+                                "success": {
+                                    "value": -1
+                                }
                             },
                             "children": [
                                 {
@@ -106,7 +110,9 @@
                                     "type": "action",
                                     "name": "lounge",
                                     "parameters": {
-                                        "entity": {"key": "chair"}
+                                        "entity": {
+                                            "key": "chair"
+                                        }
                                     }
                                 },
                                 {
@@ -114,7 +120,9 @@
                                     "type": "action",
                                     "name": "timer",
                                     "parameters": {
-                                        "time": {"key": "<duration>"}
+                                        "time": {
+                                            "key": "<duration>"
+                                        }
                                     }
                                 }
                             ]
@@ -134,12 +142,28 @@
                             "parameters": {}
                         },
                         {
+                            "title": "inverter",
+                            "type": "decorator",
+                            "name": "inverter",
+                            "parameters": {},
+                            "child": {
+                                "title": "isFollowingRecruiter",
+                                "type": "action",
+                                "name": "isFollowingRecruiter",
+                                "parameters": {}
+                            }
+                        },
+                        {
                             "title": "parallel",
                             "type": "composite",
                             "name": "parallel",
                             "parameters": {
-                                "fail": {"value": 1},
-                                "success": {"value": -1}
+                                "fail": {
+                                    "value": 1
+                                },
+                                "success": {
+                                    "value": -1
+                                }
                             },
                             "children": [
                                 {
@@ -147,7 +171,9 @@
                                     "type": "action",
                                     "name": "lounge",
                                     "parameters": {
-                                        "entity": {"key": "chair"}
+                                        "entity": {
+                                            "key": "chair"
+                                        }
                                     }
                                 },
                                 {
@@ -155,7 +181,9 @@
                                     "type": "action",
                                     "name": "timer",
                                     "parameters": {
-                                        "time": {"value": [20, 100]}
+                                        "time": {
+                                            "key": "<duration>"
+                                        }
                                     }
                                 }
                             ]

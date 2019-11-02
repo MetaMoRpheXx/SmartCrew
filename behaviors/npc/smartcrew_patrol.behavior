@@ -1,0 +1,268 @@
+{
+	"name": "smartcrew_patrol",
+	"description": null,
+	"scripts": [
+		"/scripts/actions/crew.lua",
+		"/scripts/actions/position.lua",
+		"/scripts/actions/time.lua",
+		"/scripts/actions/movement.lua",
+		"/scripts/actions/sensor.lua"
+	],
+	"parameters": {
+		"timeRange": [0, 0.1],
+		"watchDuration": [1, 3],
+		"patrolDuration": 1.75
+	},
+	"root": {
+		"title": "sequence",
+		"type": "composite",
+		"name": "sequence",
+		"parameters": {},
+		"children": [
+			{
+				"title": "hasRecruiter",
+				"type": "action",
+				"name": "hasRecruiter",
+				"parameters": {}
+			},
+			{
+				"title": "inverter",
+				"type": "decorator",
+				"name": "inverter",
+				"parameters": {},
+				"child": {
+					"title": "isFollowingRecruiter",
+					"type": "action",
+					"name": "isFollowingRecruiter",
+					"parameters": {}
+				}
+			},
+			{
+				"title": "offsetPosition",
+				"type": "action",
+				"name": "offsetPosition",
+				"parameters": {
+					"offset": {"value": [0, 0]},
+					"position": {"key": "self"}
+				},
+				"output": {
+					"position": "initialPosition"
+				}
+			},
+			{
+				"title": "groundPosition",
+				"type": "action",
+				"name": "groundPosition",
+				"parameters": {
+					"avoidLiquid": {"value": true},
+					"maxHeight": {"value": 5},
+					"minHeight": {"value": -5},
+					"position": {"key": "initialPosition"}
+				},
+				"output": {
+					"position": "initialPosition"
+				}
+			},
+			{
+				"title": "parallel",
+				"type": "composite",
+				"name": "parallel",
+				"parameters": {
+					"fail": {"value": 1},
+					"success": {"value": -1}
+				},
+				"children": [
+					{
+						"title": "",
+						"type": "action",
+						"name": "withinTimeRange",
+						"parameters": {
+							"range": {"key": "<timeRange>"}
+						}
+					},
+					{
+						"title": null,
+						"type": "composite",
+						"name": "sequence",
+						"parameters": {},
+						"children": [
+							{
+								"title": "parallel",
+								"type": "composite",
+								"name": "parallel",
+								"parameters": {
+									"fail": {"value": 1},
+									"success": {"value": -1}
+								},
+								"children": [
+									{
+										"title": "sequence",
+										"type": "composite",
+										"name": "sequence",
+										"parameters": {},
+										"children": [
+											{
+												"title": "moveToPosition",
+												"type": "action",
+												"name": "moveToPosition",
+												"parameters": {
+													"avoidLiquid": {"value": true},
+													"groundPosition": {"value": true},
+													"maxGround": {"value": 5},
+													"minGround": {"value": -5},
+													"position": {"key": "initialPosition"},
+													"run": {"value": false}
+												}
+											},
+											{
+												"title": "setDirection",
+												"type": "action",
+												"name": "setDirection",
+												"parameters": {},
+												"output": {
+													"direction": "patrolDirection"
+												}
+											},
+											{
+												"title": "succeeder",
+												"type": "decorator",
+												"name": "succeeder",
+												"parameters": {},
+												"child": {
+													"title": "parallel",
+													"type": "composite",
+													"name": "parallel",
+													"parameters": {
+														"fail": {"value": 1},
+														"success": {"value": 1}
+													},
+													"children": [
+														{
+															"title": "selector",
+															"type": "composite",
+															"name": "selector",
+															"parameters": {},
+															"children": [
+																{
+																	"title": "parallel",
+																	"type": "composite",
+																	"name": "parallel",
+																	"parameters": {
+																		"fail": {"value": 1},
+																		"success": {"value": -1}
+																	},
+																	"children": [
+																		{
+																			"title": "succeeder",
+																			"type": "decorator",
+																			"name": "succeeder",
+																			"parameters": {},
+																			"child": {
+																				"title": "",
+																				"type": "action",
+																				"name": "openDoors",
+																				"parameters": {
+																					"distance": {"value": 2}
+																				}
+																			}
+																		},
+																		{
+																			"title": "move",
+																			"type": "action",
+																			"name": "move",
+																			"parameters": {
+																				"direction": {"key": "patrolDirection"},
+																				"run": {"value": false}
+																			}
+																		}
+																	]
+																},
+																{
+																	"title": "succeeder",
+																	"type": "decorator",
+																	"name": "succeeder",
+																	"parameters": {},
+																	"child": {
+																		"title": "sequence",
+																		"type": "composite",
+																		"name": "sequence",
+																		"parameters": {},
+																		"children": [
+																			{
+																				"title": "succeeder",
+																				"type": "decorator",
+																				"name": "succeeder",
+																				"parameters": {},
+																				"child": {
+																					"title": "closeDoors",
+																					"type": "action",
+																					"name": "closeDoors",
+																					"parameters": {
+																						"distance": {"value": 3}
+																					}
+																				}
+																			},
+																			{
+																				"title": "lineTileCollision",
+																				"type": "action",
+																				"name": "lineTileCollision",
+																				"parameters": {
+																					"collisionType": {"value": ["Null", "Block"]},
+																					"offset": {"value": ["facingDirection", 0]},
+																					"position": {"key": "self"}
+																				}
+																			},
+																			{
+																				"title": "reverseDirection",
+																				"type": "action",
+																				"name": "reverseDirection",
+																				"parameters": {
+																					"direction": {"key": "facingDirection"}
+																				},
+																				"output": {
+																					"direction": "reversedDirection"
+																				}
+																			},
+																			{
+																				"title": "faceDirection",
+																				"type": "action",
+																				"name": "faceDirection",
+																				"parameters": {
+																					"direction": {"key": "reversedDirection"}
+																				}
+																			}
+																		]
+																	}
+																}
+															]
+														},
+														{
+															"title": "patrolTime",
+															"type": "action",
+															"name": "timer",
+															"parameters": {
+																"time": {"key": "<patrolDuration>"}
+															}
+														}
+													]
+												}
+											}
+										]
+									}
+								]
+							},
+							{
+								"title": "watch",
+								"type": "action",
+								"name": "timer",
+								"parameters": {
+									"time": {"key": "<watchDuration>"}
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

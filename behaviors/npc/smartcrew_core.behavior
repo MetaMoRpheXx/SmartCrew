@@ -1,259 +1,261 @@
 {
-  "name": "smartcrew_core",
-  "description": "",
-  "scripts": [
-    "/scripts/actions/crew.lua",
-    "/scripts/actions/smartcrew_utils.lua",
-    "/scripts/actions/smartcrew_core.lua"
-  ],
-  "parameters": {},
-  "root": {
-    "title": "sequence",
-    "type": "composite",
-    "name": "sequence",
-    "parameters": {},
-    "children": [
-      {
-        "title": "hasRecruiter",
-        "type": "action",
-        "name": "hasRecruiter",
-        "parameters": {}
-      },
-      {
-        "title": "inverter",
-        "type": "decorator",
-        "name": "inverter",
-        "parameters": {},
-        "child": {
-          "title": "isFollowingRecruiter",
-          "type": "action",
-          "name": "isFollowingRecruiter",
-          "parameters": {}
-        }
-      },
-      {
-        "title": "succeeder",
-        "type": "decorator",
-        "name": "succeeder",
-        "parameters": {},
-        "child": {
-          "title": "sequence",
-          "type": "composite",
-          "name": "sequence",
-          "parameters": {},
-          "children": [
-            {
-              "title": "smartcrew_getCrewRole",
-              "type": "action",
-              "name": "smartcrew_getCrewRole",
-              "parameters": {},
-              "output": {
-                "role": "crewRole"
-              }
-            },
-            {
-              "title": "smartcrew_setTaskSchedule",
-              "type": "action",
-              "name": "smartcrew_setTaskSchedule",
-              "parameters": {
-                "entity": {"key": "self"},
-                "role": {"key": "crewRole"}
-              },
-              "output": {
-                "task": "crewRoleTask"
-              }
-            },
-            {
-              "title": "selector",
-              "type": "composite",
-              "name": "selector",
-              "parameters": {},
-              "children": [
-                {
-                  "title": "roam",
-                  "type": "composite",
-                  "name": "sequence",
-                  "parameters": {},
-                  "children": [
-                    {
-                      "title": "smartcrew_getTaskDuration",
-                      "type": "action",
-                      "name": "smartcrew_getTaskDuration",
-                      "parameters": {
-                        "entity": {"key": "self"},
-                        "role": {"key": "crewRole"},
-                        "taskpick": {"key": "crewRoleTask"},
-                        "taskqueue": {"value": "chat"}
-                      },
-                      "output": {
-                        "duration": "chatDuration"
-                      }
-                    },
-                    {
-                      "title": "chat",
-                      "type": "module",
-                      "name": "chat",
-                      "parameters": {}
-                    }
-                  ]
-                },
-                {
-                  "title": "lounge",
-                  "type": "composite",
-                  "name": "sequence",
-                  "parameters": {},
-                  "children": [
-                    {
-                      "title": "smartcrew_getTaskDuration",
-                      "type": "action",
-                      "name": "smartcrew_getTaskDuration",
-                      "parameters": {
-                        "entity": {"key": "self"},
-                        "role": {"key": "crewRole"},
-                        "taskpick": {"key": "crewRoleTask"},
-                        "taskqueue": {"value": "lounge"}
-                      },
-                      "output": {
-                        "duration": "loungeDuration"
-                      }
-                    },
-                    {
-                      "title": "sit",
-                      "type": "module",
-                      "name": "sit",
-                      "parameters": {
-                        "duration": {"value": [20, 80]},
-                        "timeRange": {"key": "loungeDuration"}
-                      }
-                    }
-                  ]
-                },
-                {
-                  "title": "roam",
-                  "type": "composite",
-                  "name": "sequence",
-                  "parameters": {},
-                  "children": [
-                    {
-                      "title": "smartcrew_getTaskDuration",
-                      "type": "action",
-                      "name": "smartcrew_getTaskDuration",
-                      "parameters": {
-                        "entity": {"key": "self"},
-                        "role": {"key": "crewRole"},
-                        "taskpick": {"key": "crewRoleTask"},
-                        "taskqueue": {"value": "patrol"}
-                      },
-                      "output": {
-                        "duration": "patrolDuration"
-                      }
-                    },
-                    {
-                      "title": "patrol",
-                      "type": "module",
-                      "name": "patrol",
-                      "parameters": {
-                        "idleTime": {"value": [2, 10]},
-                        "alwaysRun": {"value": false},
-                        "patrolTime": {"value": 1.5}
-                      }
-                    }
-                  ]
-                },
-                {
-                  "title": "roam",
-                  "type": "composite",
-                  "name": "sequence",
-                  "parameters": {},
-                  "children": [
-                    {
-                      "title": "smartcrew_getTaskDuration",
-                      "type": "action",
-                      "name": "smartcrew_getTaskDuration",
-                      "parameters": {
-                        "entity": {"key": "self"},
-                        "role": {"key": "crewRole"},
-                        "taskpick": {"key": "crewRoleTask"},
-                        "taskqueue": {"value": "roam"}
-                      },
-                      "output": {
-                        "duration": "roamDuration"
-                      }
-                    },
-                    {
-                      "title": "simple",
-                      "type": "module",
-                      "name": "simple",
-                      "parameters": {}
-                    }
-                  ]
-                },
-                {
-                  "title": "sleep",
-                  "type": "composite",
-                  "name": "sequence",
-                  "parameters": {},
-                  "children": [
-                    {
-                      "title": "smartcrew_getTaskDuration",
-                      "type": "action",
-                      "name": "smartcrew_getTaskDuration",
-                      "parameters": {
-                        "entity": {"key": "self"},
-                        "role": {"key": "crewRole"},
-                        "taskpick": {"key": "crewRoleTask"},
-                        "taskqueue": {"value": "sleep"}
-                      },
-                      "output": {
-                        "duration": "sleepDuration"
-                      }
-                    },
-                    {
-                      "title": "sleep",
-                      "type": "module",
-                      "name": "sleep",
-                      "parameters": {
-                        "sleepUntil": {"key": "sleepDuration"}
-                      }
-                    }
-                  ]
-                },
-                {
-                  "title": "work",
-                  "type": "composite",
-                  "name": "sequence",
-                  "parameters": {},
-                  "children": [
-                    {
-                      "title": "smartcrew_getTaskDuration",
-                      "type": "action",
-                      "name": "smartcrew_getTaskDuration",
-                      "parameters": {
-                        "entity": {"key": "self"},
-                        "role": {"key": "crewRole"},
-                        "taskpick": {"key": "crewRoleTask"},
-                        "taskqueue": {"value": "work"}
-                      },
-                      "output": {
-                        "duration": "workDuration"
-                      }
-                    },
-                    {
-                      "title": "smartcrew_work",
-                      "type": "module",
-                      "name": "smartcrew_work",
-                      "parameters": {
-                        "task": {"key": "crewRoleTask"},
-                        "timeRange": {"key": "workDuration"}
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      }
-    ]
-  }
+	"name": "smartcrew_core",
+	"description": "",
+	"scripts": [
+		"/scripts/actions/crew.lua",
+		"/scripts/actions/smartcrew_utils.lua",
+		"/scripts/actions/smartcrew_core.lua"
+	],
+	"parameters": {},
+	"root": {
+		"title": "sequence",
+		"type": "composite",
+		"name": "sequence",
+		"parameters": {},
+		"children": [
+			{
+				"title": "hasRecruiter",
+				"type": "action",
+				"name": "hasRecruiter",
+				"parameters": {}
+			},
+			{
+				"title": "inverter",
+				"type": "decorator",
+				"name": "inverter",
+				"parameters": {},
+				"child": {
+					"title": "isFollowingRecruiter",
+					"type": "action",
+					"name": "isFollowingRecruiter",
+					"parameters": {}
+				}
+			},
+			{
+				"title": "succeeder",
+				"type": "decorator",
+				"name": "succeeder",
+				"parameters": {},
+				"child": {
+					"title": "sequence",
+					"type": "composite",
+					"name": "sequence",
+					"parameters": {},
+					"children": [
+						{
+							"title": "smartcrew_getCrewRole",
+							"type": "action",
+							"name": "smartcrew_getCrewRole",
+							"parameters": {},
+							"output": {
+								"role": "crewRole"
+							}
+						},
+						{
+							"title": "smartcrew_setTaskSchedule",
+							"type": "action",
+							"name": "smartcrew_setTaskSchedule",
+							"parameters": {
+								"entity": {"key": "self"},
+								"role": {"key": "crewRole"}
+							},
+							"output": {
+								"task": "crewRoleTask"
+							}
+						},
+						{
+							"title": "selector",
+							"type": "composite",
+							"name": "selector",
+							"parameters": {},
+							"children": [
+								{
+									"title": "roam",
+									"type": "composite",
+									"name": "sequence",
+									"parameters": {},
+									"children": [
+										{
+											"title": "smartcrew_getTaskDuration",
+											"type": "action",
+											"name": "smartcrew_getTaskDuration",
+											"parameters": {
+												"entity": {"key": "self"},
+												"role": {"key": "crewRole"},
+												"taskpick": {"key": "crewRoleTask"},
+												"taskqueue": {"value": "chat"}
+											},
+											"output": {
+												"duration": "chatDuration"
+											}
+										},
+										{
+											"title": "chat",
+											"type": "module",
+											"name": "chat",
+											"parameters": {}
+										}
+									]
+								},
+								{
+									"title": "lounge",
+									"type": "composite",
+									"name": "sequence",
+									"parameters": {},
+									"children": [
+										{
+											"title": "smartcrew_getTaskDuration",
+											"type": "action",
+											"name": "smartcrew_getTaskDuration",
+											"parameters": {
+												"entity": {"key": "self"},
+												"role": {"key": "crewRole"},
+												"taskpick": {"key": "crewRoleTask"},
+												"taskqueue": {"value": "lounge"}
+											},
+											"output": {
+												"duration": "loungeDuration"
+											}
+										},
+										{
+											"title": "sit",
+											"type": "module",
+											"name": "sit",
+											"parameters": {
+												"duration": {"value": [20, 80]},
+												"timeRange": {"key": "loungeDuration"}
+											}
+										}
+									]
+								},
+								{
+									"title": "roam",
+									"type": "composite",
+									"name": "sequence",
+									"parameters": {},
+									"children": [
+										{
+											"title": "smartcrew_getTaskDuration",
+											"type": "action",
+											"name": "smartcrew_getTaskDuration",
+											"parameters": {
+												"entity": {"key": "self"},
+												"role": {"key": "crewRole"},
+												"taskpick": {"key": "crewRoleTask"},
+												"taskqueue": {"value": "patrol"}
+											},
+											"output": {
+												"duration": "patrolDuration"
+											}
+										},
+										{
+											"title": "smartcrew_patrol",
+											"type": "module",
+											"name": "smartcrew_patrol",
+											"parameters": {
+												"timeRange": {"key": "patrolDuration"},
+												"watchDuration": {"value": [3, 7]},
+												"patrolDuration": {"value": 1.75}
+											}
+										}
+									]
+								},
+								{
+									"title": "roam",
+									"type": "composite",
+									"name": "sequence",
+									"parameters": {},
+									"children": [
+										{
+											"title": "smartcrew_getTaskDuration",
+											"type": "action",
+											"name": "smartcrew_getTaskDuration",
+											"parameters": {
+												"entity": {"key": "self"},
+												"role": {"key": "crewRole"},
+												"taskpick": {"key": "crewRoleTask"},
+												"taskqueue": {"value": "roam"}
+											},
+											"output": {
+												"duration": "roamDuration"
+											}
+										},
+										{
+											"title": "smartcrew_roam",
+											"type": "module",
+											"name": "smartcrew_roam",
+											"parameters": {
+												"timeRange": {"key": "roamDuration"}
+											}
+										}
+									]
+								},
+								{
+									"title": "sleep",
+									"type": "composite",
+									"name": "sequence",
+									"parameters": {},
+									"children": [
+										{
+											"title": "smartcrew_getTaskDuration",
+											"type": "action",
+											"name": "smartcrew_getTaskDuration",
+											"parameters": {
+												"entity": {"key": "self"},
+												"role": {"key": "crewRole"},
+												"taskpick": {"key": "crewRoleTask"},
+												"taskqueue": {"value": "sleep"}
+											},
+											"output": {
+												"duration": "sleepDuration"
+											}
+										},
+										{
+											"title": "sleep",
+											"type": "module",
+											"name": "sleep",
+											"parameters": {
+												"sleepUntil": {"key": "sleepDuration"}
+											}
+										}
+									]
+								},
+								{
+									"title": "work",
+									"type": "composite",
+									"name": "sequence",
+									"parameters": {},
+									"children": [
+										{
+											"title": "smartcrew_getTaskDuration",
+											"type": "action",
+											"name": "smartcrew_getTaskDuration",
+											"parameters": {
+												"entity": {"key": "self"},
+												"role": {"key": "crewRole"},
+												"taskpick": {"key": "crewRoleTask"},
+												"taskqueue": {"value": "work"}
+											},
+											"output": {
+												"duration": "workDuration"
+											}
+										},
+										{
+											"title": "smartcrew_work",
+											"type": "module",
+											"name": "smartcrew_work",
+											"parameters": {
+												"task": {"key": "crewRoleTask"},
+												"timeRange": {"key": "workDuration"}
+											}
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			}
+		]
+	}
 }
