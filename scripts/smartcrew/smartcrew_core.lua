@@ -1,13 +1,13 @@
-require "/scripts/actions/smartcrew_utils.lua"
+require "/scripts/smartcrew/smartcrew_utils.lua"
 require "/scripts/util.lua"
 
-local roleAnchorItems = root.assetJson("/smartcrew.config:roleAnchorItems")
-local roleScheduleTasks = root.assetJson("/smartcrew.config:roleScheduleTasks")
-local roleTaskReactions = root.assetJson("/smartcrew.config:roleTaskReactions")
-local shipMarkerItems = root.assetJson("/smartcrew.config:shipMarkerItems")
-local taskDefaults = root.assetJson("/smartcrew.config:taskDefaults")
-local taskChangeActivityChance = root.assetJson("/smartcrew.config:taskChangeActivityChance")
-local taskCrewStatus = {}
+local roleAnchorItems = root.assetJson("/smartcrew.dev.config:roleAnchorItems")
+local roleScheduleTasks = root.assetJson("/smartcrew.dev.config:roleScheduleTasks")
+local roleTaskReactions = root.assetJson("/smartcrew.dev.config:roleTaskReactions")
+local shipMarkerItems = root.assetJson("/smartcrew.dev.config:shipMarkerItems")
+local taskDefaults = root.assetJson("/smartcrew.dev.config:taskDefaults")
+local taskChangeActivityChance = root.assetJson("/smartcrew.dev.config:taskChangeActivityChance")
+local taskCrewAct = {}
 
 function smartcrew_isInsideShip(args, board)
 	local shipValidity = world.objectQuery(args.position, 275)
@@ -80,17 +80,17 @@ function smartcrew_getTaskCurrent(args, board)
 	local crewName = world.entityName(args.entity)
 	local crewRole = string.gsub(args.role, "%s+", "")
 
-	if taskCrewStatus[crewRole .. "_" .. crewName] ~= nil and taskCrewStatus[crewRole .. "_" .. crewName][dayNow] ~= nil then
-		local crewTasks =  taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]
-		local crewTaskCurrent =  taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["current"]
+	if taskCrewAct[crewRole .. "_" .. crewName] ~= nil and taskCrewAct[crewRole .. "_" .. crewName][dayNow] ~= nil then
+		local crewTasks =  taskCrewAct[crewRole .. "_" .. crewName][dayNow]["activities"]
+		local crewTaskCurrent =  taskCrewAct[crewRole .. "_" .. crewName][dayNow]["current"]
 
 		if util.isTimeInRange(timeNow, crewTasks[crewTaskCurrent]["schedule"]) == true then
 
-			-- setTestLog("getTaskCurrent", crewName .. " (" .. crewRole .. ") is currently doing " .. crewTasks[crewTaskCurrent]["task"] .. " up until ".. crewTasks[crewTaskCurrent]["schedule"][2] .. " (Current Time: " .. timeNow .. ")")
+			setTestLog("getTaskCurrent", crewName .. " (" .. crewRole .. ") is currently doing " .. crewTasks[crewTaskCurrent]["task"] .. " up until ".. crewTasks[crewTaskCurrent]["schedule"][2] .. " (Current Time: " .. timeNow .. ")")
 
 			return true
 		else
-			-- setTestLog("getTaskCurrent", crewName .. " (" .. crewRole .. ") is currently doing " .. crewTasks[crewTaskCurrent]["task"] .. " and cannot be bothered to " .. args.taskqueue .. " right now, maybe later. (Current Time: " .. timeNow .. ")")
+			setTestLog("getTaskCurrent", crewName .. " (" .. crewRole .. ") task " .. crewTasks[crewTaskCurrent]["task"] .. " is past the schedule, changing... (Current Time: " .. timeNow .. ")")
 
 			return false
 		end
@@ -99,18 +99,18 @@ function smartcrew_getTaskCurrent(args, board)
 	end
 end
 
-function smartcrew_getTaskDuration(args, board)
+function smartcrew_getTaskSetup(args, board)
 	local dayNow = world.day()
 	local crewName = world.entityName(args.entity)
 	local crewRole = string.gsub(args.role, "%s+", "")
 
-	if taskCrewStatus[crewRole .. "_" .. crewName] ~= nil and taskCrewStatus[crewRole .. "_" .. crewName][dayNow] ~= nil then
-		local crewTaskList = taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]
-		local crewCurrent = taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["current"]
+	if taskCrewAct[crewRole .. "_" .. crewName] ~= nil and taskCrewAct[crewRole .. "_" .. crewName][dayNow] ~= nil then
+		local crewTaskList = taskCrewAct[crewRole .. "_" .. crewName][dayNow]["activities"]
+		local crewCurrent = taskCrewAct[crewRole .. "_" .. crewName][dayNow]["current"]
 		local crewCurrentTask = crewTaskList[crewCurrent]
 
 		if args.taskpick == args.taskqueue then
-			-- setTestLog("getTaskDuration", crewName .. " (" .. crewRole .. ") agreed to " .. args.taskpick .. " (" .. crewCurrentTask["task"] .. " pulled from table) from " .. crewCurrentTask["schedule"][1] .. " to " .. crewCurrentTask["schedule"][2])
+			setTestLog("getTaskDuration", crewName .. " (" .. crewRole .. ") agreed to " .. args.taskpick .. " (" .. crewCurrentTask["task"] .. " pulled from table) from " .. crewCurrentTask["schedule"][1] .. " to " .. crewCurrentTask["schedule"][2])
 
 			return true, {duration = crewCurrentTask["schedule"]}
 		else
@@ -185,18 +185,18 @@ function smartcrew_setTaskSchedule(args, board)
 	local crewRole = string.gsub(args.role, "%s+", "")
 	local crewChangeTaskWeight = math.random(1, 100)
 
-	if taskCrewStatus[crewRole .. "_" .. crewName] == nil then
-		taskCrewStatus[crewRole .. "_" .. crewName] = {}
-		taskCrewStatus[crewRole .. "_" .. crewName][dayNow] = {
+	if taskCrewAct[crewRole .. "_" .. crewName] == nil then
+		taskCrewAct[crewRole .. "_" .. crewName] = {}
+		taskCrewAct[crewRole .. "_" .. crewName][dayNow] = {
 			prevact = "",
 			current = 1,
 			activities = {}
 		}
 	end
 
-	if taskCrewStatus[crewRole .. "_" .. crewName][dayNow] == nil then
-		taskCrewStatus[crewRole .. "_" .. crewName] = {}
-		taskCrewStatus[crewRole .. "_" .. crewName][dayNow] = {
+	if taskCrewAct[crewRole .. "_" .. crewName][dayNow] == nil then
+		taskCrewAct[crewRole .. "_" .. crewName] = {}
+		taskCrewAct[crewRole .. "_" .. crewName][dayNow] = {
 			prevact = "",
 			current = 1,
 			activities = {}
@@ -205,7 +205,7 @@ function smartcrew_setTaskSchedule(args, board)
 		-- setTestLog("setTaskSchedule", crewName .. " (" .. crewRole .. ") has done his yesterday's entry and is now erased from his schedule pool. " .. crewName .. " will now be picking schedule for today (Day " .. dayNow .. ").")
 	end
 
-	if taskCrewStatus[crewRole .. "_" .. crewName][dayNow] ~= nil and next(taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]) == nil then
+	if taskCrewAct[crewRole .. "_" .. crewName][dayNow] ~= nil and next(taskCrewAct[crewRole .. "_" .. crewName][dayNow]["activities"]) == nil then
 		local activityMerge = ""
 
 		if roleScheduleTasks[crewRole] ~= nil and next(roleScheduleTasks[crewRole]) ~= nil then
@@ -214,12 +214,12 @@ function smartcrew_setTaskSchedule(args, board)
 			for a, b in pairs(roleScheduleTasks[crewRole]) do
 				local crewActivity = b["tasks"][math.random(1, #b["tasks"])]
 				local crewSchedule = b["time"]
-				local crewActivityCount = #taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]
+				local crewActivityCount = #taskCrewAct[crewRole .. "_" .. crewName][dayNow]["activities"]
 
 				if activityMerge == crewActivity then
-					taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"][crewActivityCount]["schedule"][2] = crewSchedule[2]
+					taskCrewAct[crewRole .. "_" .. crewName][dayNow]["activities"][crewActivityCount]["schedule"][2] = crewSchedule[2]
 				else
-					table.insert(taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"], {
+					table.insert(taskCrewAct[crewRole .. "_" .. crewName][dayNow]["activities"], {
 						task = crewActivity,
 						schedule = crewSchedule
 					})
@@ -237,16 +237,16 @@ function smartcrew_setTaskSchedule(args, board)
 				local tempEndTime = (tempCounter+1)/10
 				local crewActivity = taskDefaults[math.random(1, #taskDefaults)]
 				local crewSchedule = {tempStartTime, tempEndTime}
-				local crewActivityCount = #taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]
+				local crewActivityCount = #taskCrewAct[crewRole .. "_" .. crewName][dayNow]["activities"]
 
 				if tempCounter == 10 then
 					crewSchedule = {1.0, 0.0}
 				end
 
 				if activityMerge == crewActivity then
-					taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"][crewActivityCount]["schedule"][2] = crewSchedule[2]
+					taskCrewAct[crewRole .. "_" .. crewName][dayNow]["activities"][crewActivityCount]["schedule"][2] = crewSchedule[2]
 				else
-					table.insert(taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"], {
+					table.insert(taskCrewAct[crewRole .. "_" .. crewName][dayNow]["activities"], {
 						task = crewActivity,
 						schedule = crewSchedule
 					})
@@ -258,19 +258,19 @@ function smartcrew_setTaskSchedule(args, board)
 		end
 	end
 
-	for a, b in pairs(taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["activities"]) do
+	for a, b in pairs(taskCrewAct[crewRole .. "_" .. crewName][dayNow]["activities"]) do
 		if util.isTimeInRange(timeNow, b["schedule"]) == true then
 
-			if b["task"] ~= taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["prevact"] then
+			if b["task"] ~= taskCrewAct[crewRole .. "_" .. crewName][dayNow]["prevact"] then
 				-- setTestLog("setTaskSchedule", crewName .. " (" .. crewRole .. ") is now doing " .. b["task"] .. " with a schedule of " .. b["schedule"][1] .. " to " .. b["schedule"][2] .. " (Current Time: " .. timeNow .. ")")
-			elseif b["task"] == taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["prevact"] and crewChangeTaskWeight <= taskChangeActivityChance then
+			elseif b["task"] == taskCrewAct[crewRole .. "_" .. crewName][dayNow]["prevact"] and crewChangeTaskWeight <= taskChangeActivityChance then
 				-- setTestLog("setTaskSchedule", crewName .. " (" .. crewRole .. ") will modify his " .. b["task"] .. " a little bit. It's still going on from " .. b["schedule"][1] .. " to " .. b["schedule"][2] .. " (Current Time: " .. timeNow .. ")")
 			else
 				return false
 			end
 
-			taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["prevact"] = b["task"]
-			taskCrewStatus[crewRole .. "_" .. crewName][dayNow]["current"] = a
+			taskCrewAct[crewRole .. "_" .. crewName][dayNow]["prevact"] = b["task"]
+			taskCrewAct[crewRole .. "_" .. crewName][dayNow]["current"] = a
 
 			return true, {task = b["task"]}
 		end

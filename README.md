@@ -33,13 +33,15 @@ If you happen not to have these items on your ship, don't worry! they will find 
 
 ### Compatibility:
 
-  - Test List as of [25 October, 2019]:
+  - Test List as of [7 March, 2020]:
  
 		✓ Vanilla - Passed
 		✓ Chef Crewman - Passed
 		✓ Datebound - Passed
 		✓ Earth's Finest - Passed
 		✓ FU - Passed
+    ✓ Geek's Crew - Passed
+    ✓ Hunter Crewmembers - Passed
 		✓ Nonuniform - Passed
 
   - Other Compatibility Notes:

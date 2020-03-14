@@ -3,7 +3,7 @@
 	"description": "",
 	"scripts": [
 		"/scripts/actions/time.lua",
-		"/scripts/actions/smartcrew_core.lua",
+		"/scripts/smartcrew/smartcrew_core.lua",
 		"/scripts/actions/world.lua",
 		"/scripts/actions/position.lua",
 		"/scripts/actions/movement.lua"

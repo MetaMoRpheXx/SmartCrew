@@ -1,7 +1,7 @@
 require "/scripts/companions/recruitable.lua"
 require "/scripts/actions/reaction.lua"
 
-local taskActionSpeechChance = root.assetJson("/smartcrew.config:taskActionSpeechChance")
+local taskActionSpeechChance = root.assetJson("/smartcrew.dev.config:taskActionSpeechChance")
 
 local prevLogType = ""
 local enableLog = true;
@@ -24,6 +24,10 @@ function dumpTable(item)
 	else
 		return tostring(item)
    end
+end
+
+function smartcrew_getCrewLoungeStatus(args, board)
+	return npc.isLounging()
 end
 
 function smartcrew_getCrewRole(args, board)

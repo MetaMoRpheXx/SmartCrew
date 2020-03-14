@@ -1,6 +1,18 @@
 [
 	{
 		"op": "add",
+		"path": "/smartcrew_getCrewLoungeStatus",
+		"value": {
+			"type": "action",
+			"name": "smartcrew_getCrewLoungeStatus",
+			"title": "",
+			"properties": {},
+			"category": "crew",
+			"script": "/scripts/actions/smartcrew_utils.lua",
+			"output": {}
+		}
+	}, {
+		"op": "add",
 		"path": "/smartcrew_getCrewRole",
 		"value": {
 			"type": "action",

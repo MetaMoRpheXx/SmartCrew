@@ -1,0 +1,160 @@
+{
+  "name": "smartcrew_sit",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/crew.lua",
+    "/scripts/actions/query.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/actions/npc.lua",
+    "/scripts/actions/time.lua"
+  ],
+  "parameters": {
+    "timeRange": [0, 0.1]
+  },
+  "root": {
+    "title": "Sit",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "hasRecruiter",
+        "type": "action",
+        "name": "hasRecruiter",
+        "parameters": {}
+      },
+      {
+        "title": "",
+        "type": "action",
+        "name": "findLoungable",
+        "parameters": {
+          "orientation": {"value": "sit"},
+          "position": {"key": "self"},
+          "range": {"value": 450},
+          "unoccupied": {"value": true}
+        },
+        "output": {
+          "list": "loungables"
+        }
+      },
+      {
+        "title": "filter",
+        "type": "decorator",
+        "name": "filter",
+        "parameters": {
+          "list": {"key": "loungables"},
+          "type": {"value": "entity"}
+        },
+        "child": {
+          "title": "inverter",
+          "type": "decorator",
+          "name": "inverter",
+          "parameters": {},
+          "child": {
+            "title": "hasItemTag",
+            "type": "action",
+            "name": "hasItemTag",
+            "parameters": {
+              "objectEntity": {"key": "filterItem"},
+              "tag": {"value": "captainschair"}
+            }
+          }
+        }
+      },
+      {
+        "title": "listPop",
+        "type": "action",
+        "name": "listPop",
+        "parameters": {
+          "list": {"key": "loungables"}
+        },
+        "output": {
+          "list": "loungables",
+          "entity": "chair"
+        }
+      },
+      {
+        "title": null,
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "chair"}
+        },
+        "output": {
+          "position": "chair"
+        }
+      },
+      {
+        "title": "",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": 1},
+          "success": {"value": -1}
+        },
+        "children": [
+          {
+            "title": "entityExists",
+            "type": "action",
+            "name": "entityExists",
+            "parameters": {
+              "entity": {"key": "chair"}
+            }
+          },
+          {
+            "title": "",
+            "type": "action",
+            "name": "moveToPosition",
+            "parameters": {
+              "groundPosition": {"value": true},
+              "position": {"key": "chair"}
+            }
+          },
+          {
+            "title": null,
+            "type": "decorator",
+            "name": "inverter",
+            "parameters": {},
+            "child": {
+              "title": null,
+              "type": "action",
+              "name": "loungableOccupied",
+              "parameters": {
+                "entity": {"key": "chair"}
+              }
+            }
+          }
+        ]
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": 1},
+          "success": {"value": -1}
+        },
+        "children": [
+          {
+            "title": "lounge",
+            "type": "action",
+            "name": "lounge",
+            "parameters": {
+              "entity": {"key": "chair"}
+            }
+          },
+          {
+            "title": "timer",
+            "type": "action",
+            "name": "timer",
+            "parameters": {
+              "time": {"value": [60, 150]}
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

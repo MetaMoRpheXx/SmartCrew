@@ -10,8 +10,8 @@
 	],
 	"parameters": {
 		"timeRange": [0, 0.1],
-		"watchDuration": [1, 3],
-		"patrolDuration": 1.75
+		"walkDuration": [1, 1.75],
+		"watchDuration": [1, 3]
 	},
 	"root": {
 		"title": "sequence",
@@ -241,7 +241,7 @@
 															"type": "action",
 															"name": "timer",
 															"parameters": {
-																"time": {"key": "<patrolDuration>"}
+																"time": {"key": "<walkDuration>"}
 															}
 														}
 													]

@@ -10,7 +10,7 @@
 				"position": {"type": "position", "key": "self"}
 			},
 			"category": "world",
-			"script": "/scripts/actions/smartcrew_core.lua",
+			"script": "/scripts/smartcrew/smartcrew_core.lua",
 			"output": {}
 		}
 	}, {
@@ -26,7 +26,7 @@
 				"role": {"type": "string", "value": null}
 			},
 			"category": "world",
-			"script": "/scripts/actions/smartcrew_core.lua",
+			"script": "/scripts/smartcrew/smartcrew_core.lua",
 			"output": {
 				"entity": {"type": "entity", "key": null}
 			}
@@ -46,49 +46,11 @@
 				"role": {
 					"type": "string",
 					"value": null
-				},
-				"taskqueue": {
-					"type": "string",
-					"value": null
 				}
 			},
 			"category": "world",
-			"script": "/scripts/actions/smartcrew_core.lua",
+			"script": "/scripts/smartcrew/smartcrew_core.lua",
 			"output": {}
-		}
-	}, {
-		"op": "add",
-		"path": "/smartcrew_getTaskDuration",
-		"value": {
-			"type": "action",
-			"name": "smartcrew_getTaskDuration",
-			"title": "",
-			"properties": {
-				"entity": {
-					"type": "entity",
-					"value": null
-				},
-				"role": {
-					"type": "string",
-					"value": null
-				},
-				"taskpick": {
-					"type": "string",
-					"value": null
-				},
-				"taskqueue": {
-					"type": "string",
-					"value": null
-				}
-			},
-			"category": "world",
-			"script": "/scripts/actions/smartcrew_core.lua",
-			"output": {
-				"duration": {
-					"type": "vec2",
-					"key": null
-				}
-			}
 		}
 	}, {
 		"op": "add",
@@ -103,7 +65,7 @@
 				"task": {"type": "string", "value": null}
 			},
 			"category": "world",
-			"script": "/scripts/actions/smartcrew_core.lua",
+			"script": "/scripts/smartcrew/smartcrew_core.lua",
 			"output": {
 				"duration": {"type": "number", "key": null},
 				"emote": {"type": "string", "key": null},
@@ -124,9 +86,43 @@
 				"role": {"type": "string", "value": null}
 			},
 			"category": "world",
-			"script": "/scripts/actions/smartcrew_core.lua",
+			"script": "/scripts/smartcrew/smartcrew_core.lua",
 			"output": {
 				"task": {"type": "string", "key": null}
+			}
+		}
+	}, {
+		"op": "add",
+		"path": "/smartcrew_getTaskSetup",
+		"value": {
+			"type": "action",
+			"name": "smartcrew_getTaskSetup",
+			"title": "",
+			"properties": {
+				"entity": {
+					"type": "entity",
+					"value": null
+				},
+				"role": {
+					"type": "string",
+					"value": null
+				},
+				"taskpick": {
+					"type": "string",
+					"value": null
+				},
+				"taskqueue": {
+					"type": "string",
+					"value": null
+				}
+			},
+			"category": "world",
+			"script": "/scripts/smartcrew/smartcrew_core.lua",
+			"output": {
+				"duration": {
+					"type": "vec2",
+					"key": null
+				}
 			}
 		}
 	}
