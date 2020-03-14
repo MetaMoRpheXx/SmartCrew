@@ -1,0 +1,15 @@
+[
+    {
+        "op": "add",
+        "path": "/chat/properties/override", 
+        "value": {
+            "type": "bool", "value": false
+        }
+    }, {
+        "op": "add",
+        "path": "/wander/properties/override", 
+        "value": {
+            "type": "bool", "value": false
+        }
+    }
+]

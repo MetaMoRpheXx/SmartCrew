@@ -1,6 +1,20 @@
 [
 	{
 		"op": "add",
+		"path": "/hasOverride",
+		"value": {
+			"type": "action",
+			"name": "hasOverride",
+			"title": "",
+			"properties": {
+				"override": {"type": "bool", "key": null}
+			},
+			"category": "crew",
+			"script": "/scripts/actions/smartcrew_utils.lua",
+			"output": {}
+		}
+	}, {
+		"op": "add",
 		"path": "/smartcrew_getCrewLoungeStatus",
 		"value": {
 			"type": "action",

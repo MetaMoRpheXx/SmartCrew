@@ -5,18 +5,7 @@
 		"value": "/scripts/actions/crew.lua"
 	}, {
 		"op": "add",
-        "path": "/root/children/0",
-		"value": {
-			"title": "inverter",
-			"type": "decorator",
-			"name": "inverter",
-			"parameters": {},
-			"child": {
-				"title": "hasRecruiter",
-				"type": "action",
-				"name": "hasRecruiter",
-				"parameters": {}
-			}
-		}
+		"path": "/parameters/override",
+		"value": false
 	}
 ]

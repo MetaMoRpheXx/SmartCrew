@@ -73,6 +73,103 @@
                   "entity": {"key": "self"},
                   "role": {"key": "crewRole"},
                   "taskpick": {"key": "crewRoleTask"},
+                  "taskqueue": {"value": "chat"}
+                },
+                "output": {
+                  "duration": "chatDuration"
+                }
+              },
+              {
+                "title": "chat",
+                "type": "module",
+                "name": "chat",
+                "parameters": {
+                  "override": {"value": true}
+                }
+              }
+            ]
+          },
+          {
+            "title": "lounge",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "smartcrew_getTaskSetup",
+                "type": "action",
+                "name": "smartcrew_getTaskSetup",
+                "parameters": {
+                  "entity": {"key": "self"},
+                  "role": {"key": "crewRole"},
+                  "taskpick": {"key": "crewRoleTask"},
+                  "taskqueue": {"value": "patrol"}
+                },
+                "output": {
+                  "duration": "patrolDuration"
+                }
+              },
+              {
+                "title": "smartcrew_patrol",
+                "type": "module",
+                "name": "smartcrew_patrol",
+                "parameters": {
+                  "timeRange": {"key": "patrolDuration"},
+                  "walkDuration": {"value": [1, 2.5]},
+                  "watchDuration": {"value": [5, 10]}
+                }
+              }
+            ]
+          },
+          {
+            "title": "lounge",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "smartcrew_getTaskSetup",
+                "type": "action",
+                "name": "smartcrew_getTaskSetup",
+                "parameters": {
+                  "entity": {"key": "self"},
+                  "role": {"key": "crewRole"},
+                  "taskpick": {"key": "crewRoleTask"},
+                  "taskqueue": {"value": "roam"}
+                },
+                "output": {
+                  "duration": "roamDuration"
+                }
+              },
+              {
+                "title": "wander",
+                "type": "module",
+                "name": "wander",
+                "parameters": {
+                  "idleTime": {"value": [3, 9]},
+                  "alwaysRun": {"value": false},
+                  "wanderTime": {"value": 4},
+                  "outerHomeRange": {"value": 50},
+                  "innerHomeRange": {"value": 45},
+                  "override": {"value": true}
+                }
+              }
+            ]
+          },
+          {
+            "title": "lounge",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "smartcrew_getTaskSetup",
+                "type": "action",
+                "name": "smartcrew_getTaskSetup",
+                "parameters": {
+                  "entity": {"key": "self"},
+                  "role": {"key": "crewRole"},
+                  "taskpick": {"key": "crewRoleTask"},
                   "taskqueue": {"value": "lounge"}
                 },
                 "output": {

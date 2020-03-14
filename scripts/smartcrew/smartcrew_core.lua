@@ -1,12 +1,12 @@
 require "/scripts/smartcrew/smartcrew_utils.lua"
 require "/scripts/util.lua"
 
-local roleAnchorItems = root.assetJson("/smartcrew.dev.config:roleAnchorItems")
-local roleScheduleTasks = root.assetJson("/smartcrew.dev.config:roleScheduleTasks")
-local roleTaskReactions = root.assetJson("/smartcrew.dev.config:roleTaskReactions")
-local shipMarkerItems = root.assetJson("/smartcrew.dev.config:shipMarkerItems")
-local taskDefaults = root.assetJson("/smartcrew.dev.config:taskDefaults")
-local taskChangeActivityChance = root.assetJson("/smartcrew.dev.config:taskChangeActivityChance")
+local roleAnchorItems = root.assetJson("/smartcrew.config:roleAnchorItems")
+local roleScheduleTasks = root.assetJson("/smartcrew.config:roleScheduleTasks")
+local roleTaskReactions = root.assetJson("/smartcrew.config:roleTaskReactions")
+local shipMarkerItems = root.assetJson("/smartcrew.config:shipMarkerItems")
+local taskDefaults = root.assetJson("/smartcrew.config:taskDefaults")
+local taskChangeActivityChance = root.assetJson("/smartcrew.config:taskChangeActivityChance")
 local taskCrewAct = {}
 
 function smartcrew_isInsideShip(args, board)
@@ -86,11 +86,11 @@ function smartcrew_getTaskCurrent(args, board)
 
 		if util.isTimeInRange(timeNow, crewTasks[crewTaskCurrent]["schedule"]) == true then
 
-			setTestLog("getTaskCurrent", crewName .. " (" .. crewRole .. ") is currently doing " .. crewTasks[crewTaskCurrent]["task"] .. " up until ".. crewTasks[crewTaskCurrent]["schedule"][2] .. " (Current Time: " .. timeNow .. ")")
+			-- setTestLog("getTaskCurrent", crewName .. " (" .. crewRole .. ") is currently doing " .. crewTasks[crewTaskCurrent]["task"] .. " up until ".. crewTasks[crewTaskCurrent]["schedule"][2] .. " (Current Time: " .. timeNow .. ")")
 
 			return true
 		else
-			setTestLog("getTaskCurrent", crewName .. " (" .. crewRole .. ") task " .. crewTasks[crewTaskCurrent]["task"] .. " is past the schedule, changing... (Current Time: " .. timeNow .. ")")
+			-- setTestLog("getTaskCurrent", crewName .. " (" .. crewRole .. ") task " .. crewTasks[crewTaskCurrent]["task"] .. " is past the schedule, changing... (Current Time: " .. timeNow .. ")")
 
 			return false
 		end
@@ -110,7 +110,7 @@ function smartcrew_getTaskSetup(args, board)
 		local crewCurrentTask = crewTaskList[crewCurrent]
 
 		if args.taskpick == args.taskqueue then
-			setTestLog("getTaskDuration", crewName .. " (" .. crewRole .. ") agreed to " .. args.taskpick .. " (" .. crewCurrentTask["task"] .. " pulled from table) from " .. crewCurrentTask["schedule"][1] .. " to " .. crewCurrentTask["schedule"][2])
+			-- setTestLog("getTaskDuration", crewName .. " (" .. crewRole .. ") agreed to " .. args.taskpick .. " (" .. crewCurrentTask["task"] .. " pulled from table) from " .. crewCurrentTask["schedule"][1] .. " to " .. crewCurrentTask["schedule"][2])
 
 			return true, {duration = crewCurrentTask["schedule"]}
 		else
