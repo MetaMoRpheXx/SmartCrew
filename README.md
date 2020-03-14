@@ -8,14 +8,22 @@ This is my first mod btw, go easy on me.
 
 ### New Spice
 
-  - Chemists, Engineers, and Mechanic will sometimes fail at their "experiment" so you might see them explode and do minuscule amount of AoE damage. They also work hard so they sweat... a lot.
-  - Outlaws and Soldiers will, now patrol the area during certain times. You needed that security after all!
+  - Smart Crew is now running independent of the wander behavior.
+  - Lots of fixes.
+  - Much improved behaviors.
+  - More anchor items.
+  
+*For the changes to take effect, just drive your ship on another planet since the time resets every time the ship is driven on another place.*
 
 ### Features
 
   - Improved crew behavior which makes them not hang around teleporter while on the ship.
   - Ship Crew members will actually "work" on certain items on ship depending on their role.
   - Internal schedule system so ship crew members will not always be anchored on the item they're assigned to.
+  - Chemists, Engineers, and Mechanic will sometimes fail at their "experiment" so you might see them explode and do minuscule amount of AoE damage. They also work hard so they sweat... a lot.
+  - Outlaws and Soldiers will, now patrol the area during certain times. You needed that security after all!
+  
+ *Please note that crews will return to their default behavior if you're ship is not orbiting anything, which the mod is heavily dependent on. As far as I know, time doesn't "run" when your in the middle of space.*
 
 ### Anchor Items:
 
@@ -29,7 +37,7 @@ This is my first mod btw, go easy on me.
   - Soldier: gunchest, medievalmap, targetdummy
   - Tailor: apexcoolchair, craftingwheel
  
-If you happen not to have these items on your ship, don't worry! they will find random objects to hang around instead!
+*If you happen not to have these items on your ship, don't worry! they will find random objects to hang around instead!*
 
 ### Compatibility:
 
