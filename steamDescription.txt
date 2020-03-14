@@ -5,51 +5,50 @@ One of the things that irritates me is that my crews keeps sticking themselves o
 This is my first mod btw, go easy on me.
 
 [h1]New Spice:[/h1]
-    [list][*]Chemists, Engineers, and Mechanic will sometimes fail at their "experiment" so you might see them explode and do minuscule amount of AoE damage. They also work hard so they sweat... a lot.[/list]
+[list][*]Smart Crew is now running independent of the wander behavior.
+[*]Lots of fixes.
+[*]Much improved behaviors.
+[*]More anchor items.[/list]
+
+[i]For the changes to take effect, just drive your ship on another planet since the time resets every time the ship is driven on another place.[/i]
 
 [h1]Features:[/h1]
-    [list][*]Improved crew behavior which makes them not hang around teleporter while on the ship.
-    [*]Ship Crew members will actually "work" on certain items on ship depending on their role.
-    [*]Internal schedule system so ship crew members will not always be anchored on the item they're assigned to.[/list]
+[list][*]Improved crew behavior which makes them not hang around teleporter while on the ship.
+[*]Ship Crew members will actually "work" on certain items on ship depending on their role.
+[*]Internal schedule system so ship crew members will not always be anchored on the item they're assigned to.
+[*]Chemists, Engineers, and Mechanic will sometimes fail at their "experiment" so you might see them explode and do minuscule amount of AoE damage. They also work hard so they sweat... a lot.
+[*]Outlaws and Soldiers will now patrol an area in your ship during certain times. You needed that security after all![/list]
 
-Please note that crews will return to their default behavior if you're ship is not orbiting anything, which the mod is heavily dependent on. As far as I know, time doesn't "run" when your in the middle of space.
-
-[h1]New Updates:[/h1]
-    [list][*]Smart Crew is now running independent of the wander behavior.
-    [*]More anchor items.
-    [*]Much improved behaviors.
-    [*]Lots of fixes.[/list]
-
-For the changes to take effect, just drive your ship on another planet since the time resets every time the ship is driven on another place.
+[i]Please note that crews will return to their default behavior if you're ship is not orbiting anything, which the mod is heavily dependent on. As far as I know, time doesn't "run" when your in the middle of space.[/i]
 
 [h1]Anchor Items:[/h1]
-    [list][*][b]Chef[/b]: apexoven, campfire, floranstove, kitchenstovetop, medievallargecookingpot, microwave, nanostove, outpostcookingtable, outpostmicrowave, rusticoven, stationtradesignfood, woodencookingtable
-    [*][b]Chemist[/b]: apexcoolbookcase, apexcoolshelf1, apexcoolshelf2, bunkerdisplay2, bunkerpanel1, bunkerpanel2, fossilstation, microscope, outpostsmallmonitor, refinery, stationhologram, blueflask, greenflask, redflask
-    [*][b]Engineer[/b]: apexconsolekeyboard, apexcoolcomputer, apexcoolserver, craftingfurnace, inventorstable, stationdisplay, stationtradesignelectronics, outpostsmallmonitor, wiringstation
-    [*][b]Janitor[/b]: hylotltrashcan, poop, trashbag, trashcan
-    [*][b]Mechanic[/b]: apexconsolekeyboard, apexcoolcomputer, apexcoolserver, craftingfurnace, inventorstable, stationdisplay, stationtradesignelectronics, outpostsmallmonitor, wiringstationapexconsolekeyboard, apexfuelhatch, apexcoolcomputer, apexcoolserver, mechcraftingtable, outpostsmallmonitor, railcraftingtable, stationdisplay, stationtradesignelectronics, tier3switch, tier4switch, wiringstation
-    [*][b]Medic[/b]: apexcoolbookcase, apexmedsign, apexbloodbank, apexbrainjar, apexpod, apexpod2, bunkerpanel1, bunkerpanel2, capturestation, craftingmedical, microscope, planttorturedevice, prisontorturebed1, prisontorturebed2, stationmedscanner
-    [*][b]Outlaw[/b]: apexconsolekeyboard, apextorturebed, gunchest, barrelgoldfilled, medievalmap, outpostsecurityconsole, outpostsmallmonitor, screenplanet, stationtradesignweapons, stationhologram, targetdummy, woodencrategoldfilled
-    [*][b]Soldier[/b]: apexconsolekeyboard, gunchest, medievalmap, outpostsecurityconsole, outpostsmallmonitor, screenplanet, stationtradesignweapons, stationhologram, targetdummy
-    [*][b]Tailor[/b]: apexcoolchair, craftingwheel, mannequin, heartforge, holidaycraftingtable, hylotlfashionhologram, hylotlpainting1, hylotlpainting2, wiringstation
+[list][*][b]Chef[/b]: apexoven, campfire, floranstove, kitchenstovetop, medievallargecookingpot, microwave, nanostove, outpostcookingtable, outpostmicrowave, rusticoven, stationtradesignfood, woodencookingtable
+[*][b]Chemist[/b]: apexcoolbookcase, apexcoolshelf1, apexcoolshelf2, bunkerdisplay2, bunkerpanel1, bunkerpanel2, fossilstation, microscope, outpostsmallmonitor, refinery, stationhologram, blueflask, greenflask, redflask
+[*][b]Engineer[/b]: apexconsolekeyboard, apexcoolcomputer, apexcoolserver, craftingfurnace, inventorstable, stationdisplay, stationtradesignelectronics, outpostsmallmonitor, wiringstation
+[*][b]Janitor[/b]: hylotltrashcan, poop, trashbag, trashcan
+[*][b]Mechanic[/b]: apexconsolekeyboard, apexcoolcomputer, apexcoolserver, craftingfurnace, inventorstable, stationdisplay, stationtradesignelectronics, outpostsmallmonitor, wiringstation, apexconsolekeyboard, apexfuelhatch, apexcoolcomputer, apexcoolserver, mechcraftingtable, outpostsmallmonitor, railcraftingtable, stationdisplay, stationtradesignelectronics, tier3switch, tier4switch, wiringstation
+[*][b]Medic[/b]: apexcoolbookcase, apexmedsign, apexbloodbank, apexbrainjar, apexpod, apexpod2, bunkerpanel1, bunkerpanel2, capturestation, craftingmedical, microscope, planttorturedevice, prisontorturebed1, prisontorturebed2, stationmedscanner
+[*][b]Outlaw[/b]: apexconsolekeyboard, apextorturebed, gunchest, barrelgoldfilled, medievalmap, outpostsecurityconsole, outpostsmallmonitor, screenplanet, stationtradesignweapons, stationhologram, targetdummy, woodencrategoldfilled
+[*][b]Soldier[/b]: apexconsolekeyboard, gunchest, medievalmap, outpostsecurityconsole, outpostsmallmonitor, screenplanet, stationtradesignweapons, stationhologram, targetdummy
+[*][b]Tailor[/b]: apexcoolchair, craftingwheel, mannequin, heartforge, holidaycraftingtable, hylotlfashionhologram, hylotlpainting1, hylotlpainting2, wiringstation[/list]
 
-If you happen not to have these items on your ship, don't worry! they will find random objects to hang around instead!
+[i]If you happen not to have these items on your ship, don't worry! they will find random objects to hang around instead![/i]
 
 [h1]Compatibility:[/h1]
 
-    [b]Test List as of [7 March, 2020]:[/b]
-    [list][*]Vanilla ✓
-    [*]Chef Crewman ✓
-    [*]Datebound ✓
-    [*]Earth's Finest ✓
-    [*]FU ✓
-    [*]Geek's Crew ✓
-    [*]Hunter Crewmembers ✓
-    [*]Nonuniform ✓[/list]
+[b]Test List as of [7 March, 2020]:[/b]
+[list][*]Vanilla ✓
+[*]Chef Crewman ✓
+[*]Datebound ✓
+[*]Earth's Finest ✓
+[*]FU ✓
+[*]Geek's Crew ✓
+[*]Hunter Crewmembers ✓
+[*]Nonuniform ✓[/list]
 
-    [b]Other Compatibility Notes:[/b]
-    [list][*]This mod [i]should be[/i] compatible with other mods that doesn't conflict with the crew behavior.
-    [*]Will expand compatibility list as long as you provide me a mod to test it against.[/list]
+[b]Other Compatibility Notes:[/b]
+[list][*]This mod [i]should be[/i] compatible with other mods that doesn't conflict with the crew behavior.
+[*]Will expand compatibility list as long as you provide me a mod to test it against.[/list]
 
 [h1]Future Features:[/h1]
 [list][*]More behaviors and refined reactions. (Currently working on)
