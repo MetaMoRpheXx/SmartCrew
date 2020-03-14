@@ -12,19 +12,32 @@ Features:
     • Ship Crew members will actually "work" on certain items on ship depending on their role.
     • Internal schedule system so ship crew members will not always be anchored on the item they're assigned to.
 
+    Please note that crews will return to their default behavior if you're ship is not orbiting anything, which the mod is heavily dependent on. As far as I know, time doesn't "run" when your in the middle of space.
+
+----------------------------------------------------------
+
+New Updates:
+
+    • Smart Crew is now running independent of the wander behavior.
+    • More anchor items.
+    • Much improved behaviors.
+    • Lots of fixes.
+
+    For the changes to take effect, just drive your ship on another planet since the time resets every time the ship is driven on another place.
+
 ----------------------------------------------------------
 
 Anchor Items:
 
-    • Chef: apexoven, campfire, floranstove, kitchenstovetop, medievallargecookingpot, microwave, nanostove, outpostcookingtable, outpostmicrowave, rusticoven, woodencookingtable
-    • Chemist: apexcoolshelf2, blueflask, greenflask, redflask
-    • Engineer: craftingfurnace, inventorstable
+    • Chef: apexoven, campfire, floranstove, kitchenstovetop, medievallargecookingpot, microwave, nanostove, outpostcookingtable, outpostmicrowave, rusticoven, stationtradesignfood, woodencookingtable
+    • Chemist: apexcoolbookcase, apexcoolshelf1, apexcoolshelf2, bunkerdisplay2, bunkerpanel1, bunkerpanel2, fossilstation, microscope, outpostsmallmonitor, refinery, stationhologram, blueflask, greenflask, redflask
+    • Engineer: apexconsolekeyboard, apexcoolcomputer, apexcoolserver, craftingfurnace, inventorstable, stationdisplay, stationtradesignelectronics, outpostsmallmonitor, wiringstation
     • Janitor: hylotltrashcan, poop, trashbag, trashcan
-    • Mechanic: apexfuelhatch, tier3switch, tier4switch
-    • Medic: apexmedsign, stationmedscanner
-    • Outlaw: gunchest, barrelgoldfilled,medievalmap,targetdummy, woodencrategoldfilled
-    • Soldier: gunchest, medievalmap, targetdummy
-    • Tailor: apexcoolchair, craftingwheel
+    • Mechanic: apexconsolekeyboard, apexcoolcomputer, apexcoolserver, craftingfurnace, inventorstable, stationdisplay, stationtradesignelectronics, outpostsmallmonitor, wiringstationapexconsolekeyboard, apexfuelhatch, apexcoolcomputer, apexcoolserver, mechcraftingtable, outpostsmallmonitor, railcraftingtable, stationdisplay, stationtradesignelectronics, tier3switch, tier4switch, wiringstation
+    • Medic: apexcoolbookcase, apexmedsign, apexbloodbank, apexbrainjar, apexpod, apexpod2, bunkerpanel1, bunkerpanel2, capturestation, craftingmedical, microscope, planttorturedevice, prisontorturebed1, prisontorturebed2, stationmedscanner
+    • Outlaw: apexconsolekeyboard, apextorturebed, gunchest, barrelgoldfilled, medievalmap, outpostsecurityconsole, outpostsmallmonitor, screenplanet, stationtradesignweapons, stationhologram, targetdummy, woodencrategoldfilled
+    • Soldier: apexconsolekeyboard, gunchest, medievalmap, outpostsecurityconsole, outpostsmallmonitor, screenplanet, stationtradesignweapons, stationhologram, targetdummy
+    • Tailor: apexcoolchair, craftingwheel, mannequin, heartforge, holidaycraftingtable, hylotlfashionhologram, hylotlpainting1, hylotlpainting2, wiringstation
 
     If you happen not to have these items on your ship, don't worry! they will find random objects to hang around instead!
 
