@@ -40,8 +40,8 @@ If you happen not to have these items on your ship, don't worry! they will find 
 		✓ Datebound - Passed
 		✓ Earth's Finest - Passed
 		✓ FU - Passed
-    ✓ Geek's Crew - Passed
-    ✓ Hunter Crewmembers - Passed
+		✓ Geek's Crew - Passed
+		✓ Hunter Crewmembers - Passed
 		✓ Nonuniform - Passed
 
   - Other Compatibility Notes:
